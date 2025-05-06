@@ -22,6 +22,8 @@ export async function POST(request: Request) {
     }
 
     // Verify reCAPTCHA token with Google
+    console.log('Attempting reCAPTCHA verification with token length:', recaptcha.length);
+
     const recaptchaResponse = await fetch(
       'https://www.google.com/recaptcha/api/siteverify',
       {
@@ -37,7 +39,7 @@ export async function POST(request: Request) {
     );
 
     const recaptchaData = await recaptchaResponse.json();
-    console.log('reCAPTCHA verification response:', recaptchaData);
+    console.log('reCAPTCHA verification response:', JSON.stringify(recaptchaData));
 
     if (!recaptchaData.success) {
       console.error('reCAPTCHA error details:', recaptchaData['error-codes']);
