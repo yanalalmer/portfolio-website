@@ -1,4 +1,4 @@
-import { Spacer, CTA } from '@components';
+import { CTA } from '@components';
 
 export const Para = () => {
   return (
