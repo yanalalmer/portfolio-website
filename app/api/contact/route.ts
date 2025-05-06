@@ -23,13 +23,24 @@ export async function POST(request: Request) {
 
     // Verify reCAPTCHA token with Google
     const recaptchaResponse = await fetch(
-      `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${recaptcha}`,
-      { method: 'POST' },
+      'https://www.google.com/recaptcha/api/siteverify',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+          secret: process.env.RECAPTCHA_SECRET_KEY || '',
+          response: recaptcha,
+        }),
+      },
     );
 
     const recaptchaData = await recaptchaResponse.json();
+    console.log('reCAPTCHA verification response:', recaptchaData);
 
     if (!recaptchaData.success) {
+      console.error('reCAPTCHA error details:', recaptchaData['error-codes']);
       return NextResponse.json(
         { error: 'reCAPTCHA verification failed' },
         { status: 400 },
