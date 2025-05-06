@@ -5,7 +5,7 @@ export const PrimaryButton = ({ text, type, className }: ButtonProps) => {
   return (
     <button
       type={type}
-      className={`text-white gradient main-transition hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-3 text-center me-2 capitalize ${className}`}
+      className={`text-white gradient main-transition hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md px-5 py-3 text-center me-2 capitalize ${className}`}
     >
       {text}
     </button>
@@ -16,7 +16,7 @@ export const SecondaryButton = ({ text, type, className }: ButtonProps) => {
   return (
     <button
       type={type}
-      className={`group relative inline-flex items-center justify-center p-0.5 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg gradient group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 ${className}`}
+      className={`group relative inline-flex items-center justify-center p-0.5 me-2 overflow-hidden text-md font-medium text-gray-900 rounded-lg gradient group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 ${className}`}
     >
       <span className="relative px-5 py-2.5 main-transition bg-white rounded-md group-hover:bg-transparent capitalize">
         {text}

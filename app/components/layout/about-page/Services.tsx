@@ -4,8 +4,8 @@ import { services } from '@data';
 export const Services = () => {
   return (
     <>
-      <div className="mb-12">
-        <SectionTitle title="What can I do for you?" />
+      <div className="mb-2">
+        <SectionTitle title="Specializing in" />
       </div>
       <div className="w-full flex flex-wrap relative mobile:gap-16 gap-12">
         {services.map((service) => (

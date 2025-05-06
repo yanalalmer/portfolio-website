@@ -187,11 +187,6 @@ export const contactSections = [
         href: 'mailto:info@yanalalmir.com',
         link: 'info@yanalalmir.com',
       },
-      {
-        id: 2,
-        href: 'tel:+31614913151',
-        link: '+31 6 14 91 31 51',
-      },
     ],
   },
   {
@@ -423,7 +418,7 @@ export const services = [
   },
   {
     number: '03',
-    title: 'Performance, Optimization & Consulting',
+    title: 'SEO & Performance Optimization',
     desc: 'Speed matters—so does stability. I audit, optimize, and improve existing frontends, or advise teams on architecture, tooling, and best practices.',
     icon: SeoIcon,
   },

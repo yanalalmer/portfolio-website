@@ -11,6 +11,7 @@ export * from './layout/about-page/CircleMenuCircles';
 export * from './layout/about-page/CircleMenuIcon';
 export * from './layout/about-page/MobileCircleMenuIcon';
 export * from './layout/about-page/TechStackGrid';
+export * from './layout/about-page/TechStack';
 export * from './layout/contact-page/ContactForm';
 export * from './layout/project-page/ProjectHero';
 export * from './layout/project-page/ProjectPara';

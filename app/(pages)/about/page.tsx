@@ -1,4 +1,12 @@
-import { Container, Para, Services, Spacer, CircleMenu, CTA } from '@components';
+import {
+  Container,
+  Para,
+  Services,
+  Spacer,
+  CircleMenu,
+  CTA,
+  TechStack,
+} from '@components';
 
 export default async function About() {
   return (
@@ -13,6 +21,7 @@ export default async function About() {
         <div className="flex justify-center">
           <CTA text="get an offer" className="mb-16 mx-auto text-[20px]" />
         </div>
+        <TechStack />
       </Container>
     </main>
   );

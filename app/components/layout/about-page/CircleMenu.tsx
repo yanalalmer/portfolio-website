@@ -1,7 +1,12 @@
 'use client';
 import React from 'react';
 import { Icon1, Icon2, Icon3, Icon4, Icon5, Icon6 } from '@icons';
-import { CircleMenuCircles, CircleMenuIcon, MobileCircleMenuIcon } from '@components';
+import {
+  CircleMenuCircles,
+  CircleMenuIcon,
+  MobileCircleMenuIcon,
+  SectionTitle,
+} from '@components';
 
 const icons = [
   {
@@ -68,17 +73,22 @@ export const CircleMenu = () => {
     };
   }, []);
   return (
-    <div className="m-auto pb-32">
-      <div className="tablet:h-[31.25rem] tablet:w-[31.25rem] h-fit w-fit rounded-full m-auto relative">
-        {isLargeScreen ? <CircleMenuCircles /> : ''}
-        {icons.map((icon) =>
-          isLargeScreen ? (
-            <CircleMenuIcon icon={icon} key={icon.title} />
-          ) : (
-            <MobileCircleMenuIcon icon={icon} key={icon.alt} />
-          ),
-        )}
+    <>
+      <div className="mb-2">
+        <SectionTitle title="Notable Skills" />
       </div>
-    </div>
+      <div className="m-auto pb-32">
+        <div className="tablet:h-[31.25rem] tablet:w-[31.25rem] h-fit w-fit rounded-full m-auto relative">
+          {isLargeScreen ? <CircleMenuCircles /> : ''}
+          {icons.map((icon) =>
+            isLargeScreen ? (
+              <CircleMenuIcon icon={icon} key={icon.title} />
+            ) : (
+              <MobileCircleMenuIcon icon={icon} key={icon.alt} />
+            ),
+          )}
+        </div>
+      </div>
+    </>
   );
 };
