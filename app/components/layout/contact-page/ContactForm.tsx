@@ -64,6 +64,8 @@ export const ContactForm = () => {
         body: JSON.stringify(data),
       });
 
+      const result = await response.json();
+
       if (response.ok) {
         console.log('Email sent successfully!');
         setSuccessMessage('Your message has been sent successfully!');
@@ -71,10 +73,16 @@ export const ContactForm = () => {
         // Reset reCAPTCHA
         recaptchaRef.current?.reset();
       } else {
-        console.error('Failed to send email.');
+        console.error('Failed to send email:', result.error);
+        setSuccessMessage(''); // Clear any success message
+        setRecaptchaError(
+          result.error || 'Failed to send email. Please try again later.',
+        );
       }
     } catch (error) {
       console.error('Error:', error);
+      setSuccessMessage(''); // Clear any success message
+      setRecaptchaError('An unexpected error occurred. Please try again later.');
     }
   };
 
