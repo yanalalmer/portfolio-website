@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import React from 'react';
-import ReCAPTCHA from 'react-google-recaptcha';
 
 const formSchema = z.object({
   name: z
@@ -19,7 +18,6 @@ const formSchema = z.object({
     .string()
     .min(1, { message: 'Message is required' })
     .max(255, { message: 'Message must be less than 255 characters' }),
-  recaptcha: z.string().optional(),
 });
 
 export const ContactForm = () => {
@@ -28,33 +26,22 @@ export const ContactForm = () => {
     handleSubmit,
     formState: { errors },
     reset,
-    setValue,
   } = useForm({
     resolver: zodResolver(formSchema),
   });
 
   const [successMessage, setSuccessMessage] = React.useState('');
-  const [recaptchaError, setRecaptchaError] = React.useState('');
-  const recaptchaRef = React.useRef<ReCAPTCHA>(null);
+  const [errorMessage, setErrorMessage] = React.useState('');
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
 
   type ContactFormData = {
     name: string;
     email: string;
     message: string;
-    recaptcha?: string;
-  };
-
-  const handleRecaptchaChange = (token: string | null) => {
-    if (token) {
-      setValue('recaptcha', token);
-      setRecaptchaError('');
-    } else {
-      setValue('recaptcha', '');
-      setRecaptchaError('Please complete the reCAPTCHA');
-    }
   };
 
   const onSubmit = async (data: ContactFormData) => {
+    setIsSubmitting(true);
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
@@ -69,25 +56,25 @@ export const ContactForm = () => {
       if (response.ok) {
         console.log('Email sent successfully!');
         setSuccessMessage('Your message has been sent successfully!');
+        setErrorMessage('');
         reset();
-        // Reset reCAPTCHA
-        recaptchaRef.current?.reset();
       } else {
         console.error('Failed to send email:', result.error);
         setSuccessMessage(''); // Clear any success message
-        setRecaptchaError(
-          result.error || 'Failed to send email. Please try again later.',
-        );
+        setErrorMessage(result.error || 'Failed to send email. Please try again later.');
       }
     } catch (error) {
       console.error('Error:', error);
       setSuccessMessage(''); // Clear any success message
-      setRecaptchaError('An unexpected error occurred. Please try again later.');
+      setErrorMessage('An unexpected error occurred. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
   const handleInputChange = () => {
     setSuccessMessage('');
+    setErrorMessage('');
   };
 
   return (
@@ -128,20 +115,18 @@ export const ContactForm = () => {
         />
         <span className="text-red mb-4">{errors.message?.message || '\u00A0'}</span>
       </div>
-      <div className="mb-4">
-        <ReCAPTCHA
-          ref={recaptchaRef}
-          sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''}
-          onChange={handleRecaptchaChange}
-        />
-        <span className="text-red mb-4">
-          {recaptchaError || errors.recaptcha?.message || '\u00A0'}
-        </span>
-      </div>
+      {errorMessage && (
+        <span className="text-red mb-4 block min-h-[1.5rem]">{errorMessage}</span>
+      )}
       <span className="text-green-500 mb-4 block min-h-[1.5rem]">
         {successMessage || '\u00A0'}
       </span>
-      <PrimaryButton text="send message" type="submit" className="mb-16" />
+      <PrimaryButton
+        text={isSubmitting ? 'sending message...' : 'send message'}
+        type="submit"
+        className="mb-16"
+        disabled={isSubmitting}
+      />
     </form>
   );
 };

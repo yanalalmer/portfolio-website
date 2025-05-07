@@ -1,11 +1,12 @@
 import { ButtonProps } from '@types';
 import { ThemeIcon } from '@icons';
 import Link from 'next/link';
-export const PrimaryButton = ({ text, type, className }: ButtonProps) => {
+export const PrimaryButton = ({ text, type, className, disabled }: ButtonProps) => {
   return (
     <button
       type={type}
       className={`text-white gradient main-transition hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md px-5 py-3 text-center me-2 capitalize ${className}`}
+      disabled={disabled}
     >
       {text}
     </button>

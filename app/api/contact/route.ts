@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 export async function POST(request: Request) {
   try {
     const data = await request.json();
-    const { name, email, message, recaptcha } = data;
+    const { name, email, message } = data;
 
     // Validate required fields
     if (!name || !email || !message) {
@@ -13,43 +13,7 @@ export async function POST(request: Request) {
       );
     }
 
-    // Validate reCAPTCHA token
-    if (!recaptcha) {
-      return NextResponse.json(
-        { error: 'reCAPTCHA verification failed' },
-        { status: 400 },
-      );
-    }
-
-    // Verify reCAPTCHA token with Google
-    console.log('Attempting reCAPTCHA verification with token length:', recaptcha.length);
-
-    const recaptchaResponse = await fetch(
-      'https://www.google.com/recaptcha/api/siteverify',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: new URLSearchParams({
-          secret: process.env.RECAPTCHA_SECRET_KEY || '',
-          response: recaptcha,
-        }),
-      },
-    );
-
-    const recaptchaData = await recaptchaResponse.json();
-    console.log('reCAPTCHA verification response:', JSON.stringify(recaptchaData));
-
-    if (!recaptchaData.success) {
-      console.error('reCAPTCHA error details:', recaptchaData['error-codes']);
-      return NextResponse.json(
-        { error: 'reCAPTCHA verification failed' },
-        { status: 400 },
-      );
-    }
-
-    // If using Formspree, forward the validated data
+    // Forward the data to Formspree
     const formspreeResponse = await fetch(
       `https://formspree.io/f/${process.env.FORMSPREE_FORM_ID}`,
       {

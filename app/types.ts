@@ -2,6 +2,7 @@ export type ButtonProps = {
   text: string;
   type?: 'button' | 'submit' | 'reset';
   className?: string;
+  disabled?: boolean;
 };
 export type HamburgerProps = {
   isOpen: boolean;
