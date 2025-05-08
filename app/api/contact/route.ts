@@ -48,7 +48,9 @@ export async function POST(request: Request) {
     } catch (emailError) {
       console.error('Nodemailer error:', emailError);
       return NextResponse.json(
-        { error: `Email sending failed: ${emailError.message}` },
+        {
+          error: `Email sending failed: ${emailError instanceof Error ? emailError.message : 'Unknown error'}`,
+        },
         { status: 500 },
       );
     }
