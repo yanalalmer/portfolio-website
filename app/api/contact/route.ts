@@ -1,42 +1,59 @@
+// pages/api/contact.js
+
+import nodemailer from 'nodemailer';
 import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
   try {
-    const data = await request.json();
-    const { name, email, message } = data;
+    const body = await request.json();
+    const { name, email, message } = body;
 
-    // Validate required fields
     if (!name || !email || !message) {
-      return NextResponse.json(
-        { error: 'Name, email, and message are required' },
-        { status: 400 },
-      );
+      return NextResponse.json({ error: 'Missing fields' }, { status: 400 });
     }
 
-    // Forward the data to Formspree
-    const formspreeResponse = await fetch(
-      `https://formspree.io/f/${process.env.FORMSPREE_FORM_ID}`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ name, email, message }),
-      },
-    );
-
-    if (!formspreeResponse.ok) {
-      const formspreeError = await formspreeResponse.text();
-      console.error('Formspree error:', formspreeError);
+    // Check if environment variables are set
+    if (!process.env.TITAN_EMAIL || !process.env.TITAN_PASSWORD) {
+      console.error('Missing email configuration environment variables');
       return NextResponse.json(
-        { error: 'Failed to send email through Formspree' },
+        { error: 'Server email configuration error' },
         { status: 500 },
       );
     }
 
-    return NextResponse.json({ success: true });
+    const transporter = nodemailer.createTransport({
+      host: 'smtp.titan.email',
+      port: 465,
+      secure: true, // true for port 465, false for 587
+      auth: {
+        user: process.env.TITAN_EMAIL,
+        pass: process.env.TITAN_PASSWORD,
+      },
+    });
+
+    try {
+      // Use a generic name for the from field to avoid domain verification issues
+      await transporter.sendMail({
+        from: process.env.TITAN_EMAIL, // Just use the email without a custom name
+        to: process.env.TITAN_EMAIL, // Your Titan inbox
+        replyTo: email, // Set reply-to as the user's email
+        subject: `New Contact Form Submission from ${name}`,
+        text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
+        html: `<p><strong>Name:</strong> ${name}</p>
+               <p><strong>Email:</strong> ${email}</p>
+               <p><strong>Message:</strong><br/>${message}</p>`,
+      });
+
+      return NextResponse.json({ success: true });
+    } catch (emailError) {
+      console.error('Nodemailer error:', emailError);
+      return NextResponse.json(
+        { error: `Email sending failed: ${emailError.message}` },
+        { status: 500 },
+      );
+    }
   } catch (error) {
-    console.error('Contact form error:', error);
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+    console.error('Error in contact API route:', error);
+    return NextResponse.json({ error: 'Failed to process request' }, { status: 500 });
   }
 }
