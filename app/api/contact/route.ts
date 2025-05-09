@@ -3,6 +3,23 @@
 import nodemailer from 'nodemailer';
 import { NextResponse } from 'next/server';
 
+// Add a GET handler to debug environment variables
+export async function GET() {
+  return NextResponse.json({
+    envCheck: {
+      titanEmailSet: !!process.env.TITAN_EMAIL,
+      titanPasswordSet: !!process.env.TITAN_PASSWORD,
+      // Show partial email for verification (first 3 chars + ****)
+      partialEmail: process.env.TITAN_EMAIL
+        ? `${process.env.TITAN_EMAIL.substring(0, 3)}****`
+        : 'not set',
+      nodeEnv: process.env.NODE_ENV,
+      // Add AWS-specific environment check
+      isAWS: !!process.env.AWS_REGION || !!process.env.AWS_LAMBDA_FUNCTION_NAME,
+    },
+  });
+}
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();
