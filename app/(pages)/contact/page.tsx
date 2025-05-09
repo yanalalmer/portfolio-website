@@ -1,4 +1,4 @@
-import { Container, SectionTitle, ContactForm, Spacer } from '@components';
+import { Container, SectionTitle, ContactForm } from '@components';
 import Link from 'next/link';
 import { contactSections } from '@data';
 
