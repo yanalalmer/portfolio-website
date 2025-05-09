@@ -122,9 +122,9 @@ export const ContactForm = () => {
         {successMessage || '\u00A0'}
       </span>
       <PrimaryButton
-        text={isSubmitting ? 'sending message...' : 'send message'}
+        text={isSubmitting ? 'sending...' : 'send message'}
         type="submit"
-        className="mb-16"
+        className={`mb-16 ${isSubmitting ? 'opacity-40 cursor-not-allowed' : ''}`}
         disabled={isSubmitting}
       />
     </form>

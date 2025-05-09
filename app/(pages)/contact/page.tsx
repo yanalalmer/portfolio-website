@@ -13,7 +13,7 @@ export default async function Contact() {
     <main className="tablet:mt-48 mt-32">
       <Container>
         <h2 className="mb-8">Lets work together</h2>
-        <Spacer />
+
         <SectionTitle title="Get in touch" />
         <div className="flex flex-wrap flex-col-reverse tablet:flex-row relative">
           <div className="tablet:w-3/5 w-full relative">
