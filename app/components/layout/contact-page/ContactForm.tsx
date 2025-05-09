@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import React from 'react';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const formSchema = z.object({
   name: z
@@ -33,6 +34,8 @@ export const ContactForm = () => {
   const [successMessage, setSuccessMessage] = React.useState('');
   const [errorMessage, setErrorMessage] = React.useState('');
   const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const [recaptchaToken, setRecaptchaToken] = React.useState<string | null>(null);
+  const recaptchaRef = React.useRef<ReCAPTCHA>(null);
 
   type ContactFormData = {
     name: string;
@@ -40,7 +43,16 @@ export const ContactForm = () => {
     message: string;
   };
 
+  const handleRecaptchaChange = (token: string | null) => {
+    setRecaptchaToken(token);
+  };
+
   const onSubmit = async (data: ContactFormData) => {
+    if (!recaptchaToken) {
+      setErrorMessage('Please complete the reCAPTCHA verification');
+      return;
+    }
+
     setIsSubmitting(true);
     try {
       const response = await fetch('/api/contact', {
@@ -48,7 +60,10 @@ export const ContactForm = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          ...data,
+          recaptchaToken,
+        }),
       });
 
       const result = await response.json();
@@ -58,6 +73,9 @@ export const ContactForm = () => {
         setSuccessMessage('Your message has been sent successfully!');
         setErrorMessage('');
         reset();
+        // Reset reCAPTCHA
+        recaptchaRef.current?.reset();
+        setRecaptchaToken(null);
       } else {
         console.error('Failed to send email:', result.error);
         setSuccessMessage(''); // Clear any success message
@@ -115,6 +133,16 @@ export const ContactForm = () => {
         />
         <span className="text-red mb-4">{errors.message?.message || '\u00A0'}</span>
       </div>
+
+      <div className="mb-6">
+        <ReCAPTCHA
+          ref={recaptchaRef}
+          sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''}
+          onChange={handleRecaptchaChange}
+          className="mt-4"
+        />
+      </div>
+
       {errorMessage && (
         <span className="text-red mb-4 block min-h-[1.5rem]">{errorMessage}</span>
       )}
