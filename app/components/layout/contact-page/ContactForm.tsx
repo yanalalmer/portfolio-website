@@ -69,8 +69,9 @@ export const ContactForm = () => {
       const result = await response.json();
 
       if (response.ok) {
-        console.log('Email sent successfully!');
-        setSuccessMessage('Your message has been sent successfully!');
+        setSuccessMessage(
+          'Thank you for reaching out! I will get back to you as soon as possible.',
+        );
         setErrorMessage('');
         reset();
         // Reset reCAPTCHA
