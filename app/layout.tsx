@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Lexend_Deca, Frank_Ruhl_Libre } from 'next/font/google';
 import './globals.css';
 import { Header, Footer } from '@components';
+import Script from 'next/script';
 
 const lexend = Lexend_Deca({ subsets: ['latin'], variable: '--font-lexend' });
 const frank = Frank_Ruhl_Libre({
@@ -31,6 +32,7 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+        <Script src="https://scripts.simpleanalyticscdn.com/latest.js" />
       </body>
     </html>
   );
