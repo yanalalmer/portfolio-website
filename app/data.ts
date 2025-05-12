@@ -1,3 +1,4 @@
+import { PythonIcon } from '@app/public/icons/PythonIcon';
 import {
   JavascriptIcon,
   GithubIcon,
@@ -34,6 +35,13 @@ import {
   DesignIcon,
   DevelopmentIcon,
   SeoIcon,
+  CursorIcon,
+  ClaudeIcon,
+  MCPIcon,
+  CopilotIcon,
+  ChatgptIcon,
+  NuxtIcon,
+  VueXIcon,
 } from '@icons';
 
 export const navbarLinks = [
@@ -231,6 +239,31 @@ export const contactSections = [
 ];
 export const techStack = [
   {
+    section: 'AI Tools (YES already onboard)',
+    items: [
+      {
+        name: 'Cursor',
+        icon: CursorIcon,
+      },
+      {
+        name: 'Claude',
+        icon: ClaudeIcon,
+      },
+      {
+        name: 'MCP',
+        icon: MCPIcon,
+      },
+      {
+        name: 'Copilot',
+        icon: CopilotIcon,
+      },
+      {
+        name: 'ChatGPT',
+        icon: ChatgptIcon,
+      },
+    ],
+  },
+  {
     section: 'Languages',
     items: [
       {
@@ -248,6 +281,10 @@ export const techStack = [
       {
         name: 'CSS',
         icon: CssIcon,
+      },
+      {
+        name: 'Python',
+        icon: PythonIcon,
       },
     ],
   },
@@ -270,6 +307,10 @@ export const techStack = [
         name: 'Vue',
         icon: VueIcon,
       },
+      {
+        name: 'Nuxt',
+        icon: NuxtIcon,
+      },
     ],
   },
   {
@@ -290,6 +331,10 @@ export const techStack = [
       {
         name: 'Recoil',
         icon: RecoilIcon,
+      },
+      {
+        name: 'VueX',
+        icon: VueXIcon,
       },
     ],
   },
