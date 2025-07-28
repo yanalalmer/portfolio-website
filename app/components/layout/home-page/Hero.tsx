@@ -20,8 +20,11 @@ export const Hero = () => {
           <motion.div
             className="text-center mobile:text-left"
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, margin: '-100px' }}
+            exit={{ opacity: 0, y: -20 }}
           >
             <h1 className="mb-4 capitalize">Frontend Development That Drives Results</h1>
             <p className="mb-4 hidden tablet:block">
@@ -32,8 +35,11 @@ export const Hero = () => {
             <motion.div
               className="mobile:py-8"
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, margin: '-100px' }}
+              exit={{ opacity: 0, y: -20 }}
             >
               <Link href="/contact">
                 <PrimaryButton text="get in touch" className="mr-4" />
@@ -51,10 +57,16 @@ export const Hero = () => {
               className="desktop:w-[40vmin] desktop:h-[40vmin] laptop:h-[40vmin] laptop:w-[40vmin] mobile:w-[30vmin] mobile:h-[30vmin] w-[50vmin] h-[50vmin] gradient absolute rotate-[60deg]"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{
-                opacity: isVisible ? 1 : 0,
-                scale: isVisible ? 1 : 0.8,
-                rotate: isVisible ? [60, 420] : 60,
+                opacity: 1,
+                scale: 1,
+                rotate: [60, 420],
               }}
+              whileInView={{
+                opacity: 1,
+                scale: 1,
+              }}
+              viewport={{ once: false, margin: '-100px' }}
+              exit={{ opacity: 0, scale: 0.8 }}
               transition={{
                 opacity: { duration: 0.8, delay: 0.3 },
                 scale: { duration: 0.8, delay: 0.3 },
@@ -71,10 +83,16 @@ export const Hero = () => {
               className="desktop:w-[40vmin] desktop:h-[40vmin] laptop:w-[40vmin] laptop:h-[40vmin] mobile:w-[30vmin] mobile:h-[30vmin] w-[50vmin] h-[50vmin] dark-gradient rotate-[30deg]"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{
-                opacity: isVisible ? 1 : 0,
-                scale: isVisible ? 1 : 0.8,
-                rotate: isVisible ? [30, -330] : 30,
+                opacity: 1,
+                scale: 1,
+                rotate: [30, -330],
               }}
+              whileInView={{
+                opacity: 1,
+                scale: 1,
+              }}
+              viewport={{ once: false, margin: '-100px' }}
+              exit={{ opacity: 0, scale: 0.8 }}
               transition={{
                 opacity: { duration: 0.8, delay: 0.5 },
                 scale: { duration: 0.8, delay: 0.5 },
@@ -89,10 +107,17 @@ export const Hero = () => {
             <motion.div
               initial={{ opacity: 0, scale: 0.8, y: 30 }}
               animate={{
-                opacity: isVisible ? 1 : 0,
-                scale: isVisible ? 1 : 0.8,
-                y: isVisible ? 0 : 30,
+                opacity: 1,
+                scale: 1,
+                y: 0,
               }}
+              whileInView={{
+                opacity: 1,
+                scale: 1,
+                y: 0,
+              }}
+              viewport={{ once: false, margin: '-100px' }}
+              exit={{ opacity: 0, scale: 0.8, y: 30 }}
               transition={{
                 duration: 1.2,
                 delay: 0.7,
