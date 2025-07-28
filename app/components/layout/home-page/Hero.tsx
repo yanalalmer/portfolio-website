@@ -1,49 +1,116 @@
+'use client';
+
 import { PrimaryButton, SecondaryButton, Mouse } from '@components';
 import Link from 'next/link';
 import Image from 'next/image';
+import { motion } from 'motion/react';
+import { useEffect, useState } from 'react';
 
 export const Hero = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
   return (
-    <div className="relative w-full h-[100dvh] flex items-center justify-center">
+    <div className="relative w-full h-[calc(100dvh-128px)] flex items-center justify-center">
       <div className="flex mobile:flex-row flex-col-reverse justify-center items-center">
         <div className="tablet:w-1/2 w-full mobile:mt-16 tablet:mt-0">
-          <div className="text-center mobile:text-left">
+          <motion.div
+            className="text-center mobile:text-left"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
             <h1 className="mb-4 capitalize">Frontend Development That Drives Results</h1>
             <p className="mb-4 hidden tablet:block">
               I build custom web applications from scratch for small and medium
               enterprises, agencies, and growing businesses. Fast, scalable, and designed
               to deliver real business results.
             </p>
-            <div className="mobile:py-8">
+            <motion.div
+              className="mobile:py-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+            >
               <Link href="/contact">
                 <PrimaryButton text="get in touch" className="mr-4" />
               </Link>
               <Link href="/about">
                 <SecondaryButton text="about me" />
               </Link>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
         <div className="flex items-center justify-center mobile:w-1/2 w-full mobile:pl-8 pl-0 mb-4 mt-4 mobile:mt-0 mobile:mb-0">
           <div className="flex justify-center items-center">
-            <div
+            <motion.div
               style={{ borderRadius: '30% 70% 70% 30% / 30% 30% 70% 70%' }}
               className="desktop:w-[40vmin] desktop:h-[40vmin] laptop:h-[40vmin] laptop:w-[40vmin] mobile:w-[30vmin] mobile:h-[30vmin] w-[50vmin] h-[50vmin] gradient absolute rotate-[60deg]"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{
+                opacity: isVisible ? 1 : 0,
+                scale: isVisible ? 1 : 0.8,
+                rotate: isVisible ? [60, 420] : 60,
+              }}
+              transition={{
+                opacity: { duration: 0.8, delay: 0.3 },
+                scale: { duration: 0.8, delay: 0.3 },
+                rotate: {
+                  duration: 30,
+                  repeat: Infinity,
+                  ease: 'linear',
+                  delay: 0.3,
+                },
+              }}
             />
-            <div
+            <motion.div
               style={{ borderRadius: '30% 70% 70% 30% / 30% 30% 70% 70%' }}
               className="desktop:w-[40vmin] desktop:h-[40vmin] laptop:w-[40vmin] laptop:h-[40vmin] mobile:w-[30vmin] mobile:h-[30vmin] w-[50vmin] h-[50vmin] dark-gradient rotate-[30deg]"
-            />
-            <Image
-              src="/images/profile.jpg"
-              alt="Profile"
-              style={{
-                borderRadius: '30% 70% 70% 30% / 30% 30% 70% 70%',
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{
+                opacity: isVisible ? 1 : 0,
+                scale: isVisible ? 1 : 0.8,
+                rotate: isVisible ? [30, -330] : 30,
               }}
-              width={400}
-              height={400}
-              className="desktop:w-[40vmin] desktop:h-[40vmin] laptop:w-[40vmin] laptop:h-[40vmin] mobile:w-[30vmin] mobile:h-[30vmin] w-[50vmin] h-[50vmin] absolute"
+              transition={{
+                opacity: { duration: 0.8, delay: 0.5 },
+                scale: { duration: 0.8, delay: 0.5 },
+                rotate: {
+                  duration: 25,
+                  repeat: Infinity,
+                  ease: 'linear',
+                  delay: 0.5,
+                },
+              }}
             />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8, y: 30 }}
+              animate={{
+                opacity: isVisible ? 1 : 0,
+                scale: isVisible ? 1 : 0.8,
+                y: isVisible ? 0 : 30,
+              }}
+              transition={{
+                duration: 1.2,
+                delay: 0.7,
+                ease: 'easeOut',
+              }}
+              className="absolute"
+            >
+              <Image
+                src="/images/profile.jpg"
+                alt="Profile"
+                style={{
+                  borderRadius: '30% 70% 70% 30% / 30% 30% 70% 70%',
+                }}
+                width={400}
+                height={400}
+                className="desktop:w-[40vmin] desktop:h-[40vmin] laptop:w-[40vmin] laptop:h-[40vmin] mobile:w-[30vmin] mobile:h-[30vmin] w-[50vmin] h-[50vmin]"
+              />
+            </motion.div>
           </div>
         </div>
       </div>
