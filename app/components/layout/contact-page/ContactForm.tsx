@@ -5,6 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import React from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
+import { motion } from 'motion/react';
 
 const formSchema = z.object({
   name: z
@@ -97,65 +98,104 @@ export const ContactForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="mb-4">
-        <input
-          type="text"
-          {...register('name')}
-          placeholder="What is your name?"
-          className={`w-full focus:bg-transparent active:bg-transparent border-b py-2 bg-transparent main-transition placeholder:text-darkGrey placeholder:opacity-50 focus:border-b-purple-600 focus:border-b active:border-b-purple-600 active:border-b outline-none ${
-            errors.name ? 'border-b-red' : 'border-b-darkGrey'
-          }`}
-          onChange={handleInputChange}
-        />
-        <span className="text-red">{errors.name?.message || '\u00A0'}</span>
-      </div>
-      <div className="mb-4">
-        <input
-          type="text"
-          {...register('email')}
-          placeholder="What is your email?"
-          className={`w-full focus:bg-transparent active:bg-transparent border-b py-2 bg-transparent main-transition placeholder:text-darkGrey placeholder:opacity-50 focus:border-b-purple-600 focus:border-b active:border-b-purple-600 active:border-b outline-none appearance-none ${
-            errors.email ? 'border-b-red' : 'border-b-darkGrey'
-          }`}
-          onChange={handleInputChange}
-        />
-        <span className="text-red mb-4">{errors.email?.message || '\u00A0'}</span>
-      </div>
-      <div className="mb-4">
-        <textarea
-          {...register('message')}
-          placeholder="Type your message here"
-          rows={4}
-          className={`resize-none w-full focus:bg-transparent active:bg-transparent border-b outline-none py-2 main-transition bg-transparent placeholder:text-darkGrey placeholder:opacity-50 focus:border-b-purple-600 focus:border-b active:border-b-purple-600 active:border-b ${
-            errors.message ? 'border-b-red' : 'border-b-darkGrey'
-          }`}
-          onChange={handleInputChange}
-        />
-        <span className="text-red mb-4">{errors.message?.message || '\u00A0'}</span>
-      </div>
+    <motion.div
+      className="tablet:w-3/5 w-full relative"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false, margin: '-100px' }}
+      transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
+    >
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <motion.div
+          className="mb-4"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, margin: '-100px' }}
+          transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
+        >
+          <input
+            type="text"
+            {...register('name')}
+            placeholder="What is your name?"
+            className={`w-full focus:bg-transparent active:bg-transparent border-b py-2 bg-transparent main-transition placeholder:text-darkGrey placeholder:opacity-50 focus:border-b-purple-600 focus:border-b active:border-b-purple-600 active:border-b outline-none ${
+              errors.name ? 'border-b-red' : 'border-b-darkGrey'
+            }`}
+            onChange={handleInputChange}
+          />
+          <span className="text-red">{errors.name?.message || '\u00A0'}</span>
+        </motion.div>
+        <motion.div
+          className="mb-4"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, margin: '-100px' }}
+          transition={{ duration: 0.6, delay: 0.5, ease: 'easeOut' }}
+        >
+          <input
+            type="text"
+            {...register('email')}
+            placeholder="What is your email?"
+            className={`w-full focus:bg-transparent active:bg-transparent border-b py-2 bg-transparent main-transition placeholder:text-darkGrey placeholder:opacity-50 focus:border-b-purple-600 focus:border-b active:border-b-purple-600 active:border-b outline-none appearance-none ${
+              errors.email ? 'border-b-red' : 'border-b-darkGrey'
+            }`}
+            onChange={handleInputChange}
+          />
+          <span className="text-red mb-4">{errors.email?.message || '\u00A0'}</span>
+        </motion.div>
+        <motion.div
+          className="mb-4"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, margin: '-100px' }}
+          transition={{ duration: 0.6, delay: 0.6, ease: 'easeOut' }}
+        >
+          <textarea
+            {...register('message')}
+            placeholder="Type your message here"
+            rows={4}
+            className={`resize-none w-full focus:bg-transparent active:bg-transparent border-b outline-none py-2 main-transition bg-transparent placeholder:text-darkGrey placeholder:opacity-50 focus:border-b-purple-600 focus:border-b active:border-b-purple-600 active:border-b ${
+              errors.message ? 'border-b-red' : 'border-b-darkGrey'
+            }`}
+            onChange={handleInputChange}
+          />
+          <span className="text-red mb-4">{errors.message?.message || '\u00A0'}</span>
+        </motion.div>
 
-      <div className="mb-6">
-        <ReCAPTCHA
-          ref={recaptchaRef}
-          sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''}
-          onChange={handleRecaptchaChange}
-          className="mt-4"
-        />
-      </div>
+        <motion.div
+          className="mb-6"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, margin: '-100px' }}
+          transition={{ duration: 0.6, delay: 0.7, ease: 'easeOut' }}
+        >
+          <ReCAPTCHA
+            ref={recaptchaRef}
+            sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''}
+            onChange={handleRecaptchaChange}
+            className="mt-4"
+          />
+        </motion.div>
 
-      {errorMessage && (
-        <span className="text-red mb-4 block min-h-[1.5rem]">{errorMessage}</span>
-      )}
-      <span className="text-green-500 mb-4 block min-h-[1.5rem]">
-        {successMessage || '\u00A0'}
-      </span>
-      <PrimaryButton
-        text={isSubmitting ? 'sending...' : 'send message'}
-        type="submit"
-        className={`mb-16 ${isSubmitting ? 'opacity-40 cursor-not-allowed' : ''}`}
-        disabled={isSubmitting}
-      />
-    </form>
+        {errorMessage && (
+          <span className="text-red mb-4 block min-h-[1.5rem]">{errorMessage}</span>
+        )}
+        <span className="text-green-500 mb-4 block min-h-[1.5rem]">
+          {successMessage || '\u00A0'}
+        </span>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, margin: '-100px' }}
+          transition={{ duration: 0.6, delay: 0.8, ease: 'easeOut' }}
+        >
+          <PrimaryButton
+            text={isSubmitting ? 'sending...' : 'send message'}
+            type="submit"
+            className={`mb-16 ${isSubmitting ? 'opacity-40 cursor-not-allowed' : ''}`}
+            disabled={isSubmitting}
+          />
+        </motion.div>
+      </form>
+    </motion.div>
   );
 };
