@@ -8,7 +8,9 @@ interface HeaderProps {
 
 export const Header = ({ className, textColor }: HeaderProps) => {
   return (
-    <nav className={`${className} py-8 w-full mx-auto top-0 left-0 right-0 z-50`}>
+    <nav
+      className={`${className} py-8 w-full mx-auto top-0 left-0 right-0 z-50 px-4 md:px-0`}
+    >
       <div className="desktop:max-w-[1170px] laptop:max-w-[1000px] flex justify-between items-center mx-auto">
         {/* logo */}
         <a href="/">
