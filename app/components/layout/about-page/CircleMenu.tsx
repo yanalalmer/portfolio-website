@@ -7,6 +7,7 @@ import {
   MobileCircleMenuIcon,
   SectionTitle,
 } from '@components';
+import { motion } from 'motion/react';
 
 const icons = [
   {
@@ -74,11 +75,29 @@ export const CircleMenu = () => {
   }, []);
   return (
     <>
-      <div className="mb-2">
+      <motion.div
+        className="mb-2"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, margin: '-100px' }}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
+      >
         <SectionTitle title="Notable Skills" />
-      </div>
-      <div className="m-auto pb-32">
-        <div className="tablet:h-[31.25rem] tablet:w-[31.25rem] h-fit w-fit rounded-full m-auto relative">
+      </motion.div>
+      <motion.div
+        className="m-auto pb-32"
+        initial={{ opacity: 0, scale: 0.9 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: false, margin: '-100px' }}
+        transition={{ duration: 1, ease: 'easeOut' }}
+      >
+        <motion.div
+          className="tablet:h-[31.25rem] tablet:w-[31.25rem] h-fit w-fit rounded-full m-auto relative"
+          initial={{ opacity: 0, rotate: -10 }}
+          whileInView={{ opacity: 1, rotate: 0 }}
+          viewport={{ once: false, margin: '-100px' }}
+          transition={{ duration: 1.2, ease: 'easeOut' }}
+        >
           {isLargeScreen ? <CircleMenuCircles /> : ''}
           {icons.map((icon) =>
             isLargeScreen ? (
@@ -87,8 +106,8 @@ export const CircleMenu = () => {
               <MobileCircleMenuIcon icon={icon} key={icon.alt} />
             ),
           )}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </>
   );
 };
