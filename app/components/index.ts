@@ -28,6 +28,7 @@ export * from './global/Header';
 export * from './global/HeaderMenu';
 export * from './global/MobileHeaderMenu';
 export * from './global/Hamburger';
+export { default as HeaderWrapper } from './global/HeaderWrapper';
 export * from './global/Footer';
 export * from './global/Spacer';
 export * from './global/SectionTitle';

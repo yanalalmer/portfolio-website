@@ -1,5 +1,4 @@
 import { navbarLinks } from '@data';
-// import { ThemeSelector } from '@components';
 
 interface HeaderMenuProps {
   textColor?: 'black' | 'white';
@@ -17,7 +16,6 @@ export const HeaderMenu = ({ textColor = 'black' }: HeaderMenuProps) => {
           {link.title}
         </a>
       ))}
-      {/* <ThemeSelector className="ml-8 hover:bg-black/30 transition-all duration-300 ease-in-out" /> */}
     </div>
   );
 };

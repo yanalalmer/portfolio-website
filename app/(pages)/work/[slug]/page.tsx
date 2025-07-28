@@ -22,7 +22,6 @@ export default function ProjectPage() {
 
   return (
     <main>
-      <Header textColor="white" />
       <ProjectHero {...project} />
       <ProjectPara {...project} />
       <ProjectBackground {...project} />

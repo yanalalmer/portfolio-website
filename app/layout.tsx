@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Lexend_Deca, Frank_Ruhl_Libre } from 'next/font/google';
 import './globals.css';
-import { Header, Footer, SmoothScroll } from '@components';
+import { Footer, SmoothScroll, HeaderWrapper } from '@components';
 import Script from 'next/script';
 
 const lexend = Lexend_Deca({ subsets: ['latin'], variable: '--font-lexend' });
@@ -30,7 +30,7 @@ export default function RootLayout({
     >
       <body>
         <SmoothScroll />
-        <Header />
+        <HeaderWrapper />
         {children}
         <Footer />
         <Script src="https://scripts.simpleanalyticscdn.com/latest.js" />

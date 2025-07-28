@@ -1,4 +1,7 @@
+'use client';
+
 import { Project } from '@types';
+import { motion } from 'motion/react';
 
 export const ProjectHero = (project: Project) => {
   const { title, year, roleService, country, projectImage, context } = project;
@@ -8,11 +11,34 @@ export const ProjectHero = (project: Project) => {
       style={{ backgroundImage: `url(${projectImage})` }}
     >
       <div className="absolute top-0 left-0 w-full h-[70dvh] bg-black opacity-55" />
-      <div className="text-white text-center z-10">
-        <h1 className="text-[128px] font-bold capitalize">{title}</h1>
-        <h3>{country}</h3>
-      </div>
-      <div className="absolute bottom-0 left-0 w-full">
+      <motion.div
+        className="text-white text-center z-10"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, ease: 'easeOut', delay: 0.3 }}
+      >
+        <motion.h1
+          className="text-[128px] font-bold capitalize"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.2, ease: 'easeOut', delay: 0.5 }}
+        >
+          {title}
+        </motion.h1>
+        <motion.h3
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, ease: 'easeOut', delay: 0.8 }}
+        >
+          {country}
+        </motion.h3>
+      </motion.div>
+      <motion.div
+        className="absolute bottom-0 left-0 w-full"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, ease: 'easeOut', delay: 1 }}
+      >
         <div className="text-white max-w-[80%] mx-auto flex justify-between items-center pb-10 capitalize font-bold">
           <p className="text-[14px]">
             <span className="text-[#37a5eb]">role:</span> {roleService}
@@ -24,7 +50,7 @@ export const ProjectHero = (project: Project) => {
             <span className="text-[#37a5eb]">year:</span> {year}
           </p>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };
