@@ -7,7 +7,6 @@ import {
   ProjectPara,
   ProjectDesigns,
   ProjectBackground,
-  Header,
 } from '@components';
 
 export default function ProjectPage() {

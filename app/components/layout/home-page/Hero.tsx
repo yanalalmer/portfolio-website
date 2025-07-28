@@ -4,15 +4,8 @@ import { PrimaryButton, SecondaryButton, Mouse } from '@components';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'motion/react';
-import { useEffect, useState } from 'react';
 
 export const Hero = () => {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
-
   return (
     <div className="relative w-full h-[calc(100dvh-128px)] flex items-center justify-center">
       <div className="flex mobile:flex-row flex-col-reverse justify-center items-center">
