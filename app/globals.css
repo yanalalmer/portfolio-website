@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 @layer base {
+  * {
+    scroll-behavior: smooth !important;
+  }
   body {
     @apply font-lexend;
     @apply text-black;
@@ -67,6 +70,24 @@ body {
   transition-duration: 0.5s;
   transition-timing-function: ease-in-out;
 }
-html {
-  scroll-behavior: smooth;
+
+/* Lenis recommended CSS */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
 }

@@ -28,3 +28,4 @@ export * from './global/Hamburger';
 export * from './global/Footer';
 export * from './global/Spacer';
 export * from './global/SectionTitle';
+export { default as SmoothScroll } from './global/SmoothScroll';
