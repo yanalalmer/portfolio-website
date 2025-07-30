@@ -6,9 +6,9 @@ import { motion } from 'motion/react';
 
 export const ProjectPara = ({ para, liveSiteUrl }: Project) => {
   return (
-    <div className="bg-black w-full py-20">
+    <div className="bg-black w-full py-20 laptop:px-20 tablet:px-10 px-5">
       <motion.div
-        className="text-white w-[40%] mx-auto text-center"
+        className="text-white laptop:w-[40%] mx-auto text-center"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: false, margin: '-100px' }}

@@ -20,9 +20,9 @@ export const ProjectBackground = ({
       >
         <SectionTitle title="Project Background" />
       </motion.div>
-      <div className="flex gap-16 py-10">
+      <div className="flex flex-col tablet:flex-row gap-16 py-10">
         <motion.div
-          className="flex flex-col gap-2 w-1/2"
+          className="flex flex-col gap-2 tablet:w-1/2"
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: false, margin: '-100px' }}
@@ -49,7 +49,7 @@ export const ProjectBackground = ({
         </motion.div>
 
         <motion.div
-          className="w-1/2"
+          className="tablet:w-1/2"
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: false, margin: '-100px' }}
