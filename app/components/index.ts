@@ -1,3 +1,7 @@
 export * from "./Header";
 export * from "./Content";
 export * from "./ThemeSelector";
+export * from "./About";
+export * from "./Experience";
+export * from "./Projects";
+export * from "./Contact";

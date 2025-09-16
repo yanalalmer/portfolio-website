@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
+
 .classic {
   --color-bg: #ffffff;
   --color-bg-offset: #f7f7f9;
