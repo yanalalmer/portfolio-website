@@ -2,92 +2,103 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  * {
-    scroll-behavior: smooth !important;
-  }
-  body {
-    @apply font-lexend;
-    @apply text-black;
-    @apply text-[16px] mobile:text-[18px] tablet:text-[19px];
-    @apply leading-[1.5];
-    @apply tracking-[0.01em];
-    @apply font-[300];
-    @apply overflow-x-hidden;
-    @apply bg-white;
-  }
-  ::selection {
-    @apply bg-purple-400;
-    @apply text-white;
-  }
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply font-frank;
-    @apply font-[700];
-  }
-  h1 {
-    @apply desktop:text-[3.5rem] tablet:text-[2.5rem] text-[2rem] leading-tight;
-  }
-  h2 {
-    @apply desktop:text-[2.75rem] tablet:text-[2rem] text-[1.75rem] leading-tight;
-  }
-  h3 {
-    @apply desktop:text-[2.5rem] tablet:text-[1.75rem] text-[1.5rem] leading-tight;
-  }
-  h4,
-  h5,
-  h6 {
-    @apply desktop:text-[1.75rem] tablet:text-[1.5rem] text-[1.25rem] leading-tight;
-  }
+.classic {
+  --color-bg: #ffffff;
+  --color-bg-offset: #f7f7f9;
+  --color-text: #373a3c;
+  --color-text-offset: #818a91;
+  --color-border: #eceeef;
+  --color-primary: #ff335f;
+  --color-primary-offset: #ff1447;
+  --color-secondary: #43a9a3;
 }
-
-@layer utilities {
-  .gradient {
-    @apply bg-gradient-to-r from-purple-400 via-purple-800 to-blue-800;
-  }
-  .main-transition {
-    @apply transition-all duration-300 ease-in-out;
-  }
-  .dark-gradient {
-    @apply bg-gradient-to-r from-purple-400 to-purple-800;
-  }
-  .flex-3 {
-    flex: 3;
-  }
-  .flex-2 {
-    flex: 2;
-  }
-  .flex-1 {
-    flex: 1;
-  }
+.dark {
+  --color-bg: #0e141b;
+  --color-bg-offset: #252526;
+  --color-text: #ffffff;
+  --color-text-offset: #818a91;
+  --color-border: #2d2d2d;
+  --color-primary: #ff5277;
+  --color-primary-offset: #ff2957;
+  --color-secondary: #43a9a3;
 }
-body {
-  transition-property: all;
-  transition-duration: 0.5s;
-  transition-timing-function: ease-in-out;
+.beach {
+  --color-bg: #fffffe;
+  --color-bg-offset: #e3f6f5;
+  --color-text: #272343;
+  --color-text-offset: #2d334a;
+  --color-border: #e3f6f5;
+  --color-primary: #ff9d00;
+  --color-primary-offset: #ffca00;
+  --color-secondary: #bae8e8;
 }
-
-/* Lenis recommended CSS */
-html.lenis {
-  height: auto;
+.choco {
+  --color-bg: #55423d;
+  --color-bg-offset: #41312e;
+  --color-text: #fffffe;
+  --color-text-offset: #ffc0ad;
+  --color-border: #271c19;
+  --color-primary: #f3ab87;
+  --color-primary-offset: #ffc0ad;
+  --color-secondary: #e78fb3;
 }
-
-.lenis.lenis-smooth {
-  scroll-behavior: auto;
+.moomoo {
+  --color-bg: #fef6e4;
+  --color-bg-offset: #f3e1d8;
+  --color-text: #172c66;
+  --color-text-offset: #006e8a;
+  --color-border: #f3d2c1;
+  --color-primary: #f582ae;
+  --color-primary-offset: #ff3d6a;
+  --color-secondary: #8bd3dd;
 }
-
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
+.bowser {
+  --color-bg: #16161a;
+  --color-bg-offset: #29293e;
+  --color-text: #fffffe;
+  --color-text-offset: #94a1b2;
+  --color-border: #383a61;
+  --color-primary: #7f5af0;
+  --color-primary-offset: #e068fd;
+  --color-secondary: #2cb67d;
 }
-
-.lenis.lenis-stopped {
-  overflow: hidden;
+.yoshi {
+  --color-bg: #fafbf5;
+  --color-bg-offset: #f2ede9;
+  --color-text: #41474c;
+  --color-text-offset: #757d84;
+  --color-border: #e8e0d9;
+  --color-primary: #99c221;
+  --color-primary-offset: #6e910a;
+  --color-secondary: #e55812;
 }
-
-.lenis.lenis-scrolling iframe {
-  pointer-events: none;
+.rainbow {
+  --color-bg: #140527;
+  --color-bg-offset: #311b46;
+  --color-text: #feff00;
+  --color-text-offset: #ff464d;
+  --color-border: #d846ff;
+  --color-primary: #49f5f7;
+  --color-primary-offset: #5dccf8;
+  --color-secondary: #01c317;
+}
+.lobster {
+  --color-bg: #fcddd4;
+  --color-bg-offset: #ffb9ad;
+  --color-text: #4b1313;
+  --color-text-offset: #146caa;
+  --color-border: #f1797c;
+  --color-primary: #b62b2b;
+  --color-primary-offset: #ff0030;
+  --color-secondary: #fb9f13;
+}
+.hackernews {
+  --color-bg: #f6f6ef;
+  --color-bg-offset: #f8f8ec;
+  --color-text: #000000;
+  --color-text-offset: #828282;
+  --color-border: #ff6600;
+  --color-primary: #ff6600;
+  --color-primary-offset: #f56200;
+  --color-secondary: #ff6600;
 }
