@@ -91,6 +91,7 @@
   --color-primary: #b62b2b;
   --color-primary-offset: #ff0030;
   --color-secondary: #fb9f13;
+  --cursor-default: url("/cursors/lobster-cursor.png"), auto;
 }
 .hackernews {
   --color-bg: #f6f6ef;
@@ -101,4 +102,12 @@
   --color-primary: #ff6600;
   --color-primary-offset: #f56200;
   --color-secondary: #ff6600;
+}
+* {
+  cursor: var(--cursor-default);
+}
+button,
+a,
+[role="button"] {
+  cursor: var(--cursor-default);
 }
