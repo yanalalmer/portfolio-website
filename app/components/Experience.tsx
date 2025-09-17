@@ -1,4 +1,5 @@
 import { UpArrowIcon } from "@icons";
+import Link from "next/link";
 
 export const Experience = () => {
   return (
@@ -27,7 +28,7 @@ export const Experience = () => {
                 <div className="z-10 sm:col-span-6">
                   <h3 className="font-medium leading-snug">
                     <div>
-                      <a
+                      <Link
                         className="inline-flex items-baseline font-medium leading-tight group/link"
                         href={project.companyUrl}
                         target="_blank"
@@ -42,7 +43,7 @@ export const Experience = () => {
                             <UpArrowIcon className="inline-block h-4 w-4 shrink-0 transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 group-focus-visible/link:-translate-y-1 group-focus-visible/link:translate-x-1 motion-reduce:transition-none ml-1 translate-y-px" />
                           </span>
                         </span>
-                      </a>
+                      </Link>
                     </div>
                   </h3>
                   <p className="mt-2 text-sm leading-normal">
