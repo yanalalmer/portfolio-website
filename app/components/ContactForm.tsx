@@ -4,6 +4,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import React from "react";
 import ReCAPTCHA from "react-google-recaptcha";
+import {
+  sendContactEmail,
+  type ContactFormData as ServerContactFormData,
+} from "../lib/actions";
 
 const formSchema = z.object({
   name: z
@@ -56,34 +60,26 @@ export const ContactForm = () => {
 
     setIsSubmitting(true);
     try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...data,
-          recaptchaToken,
-        }),
-      });
+      // Prepare data for server action
+      const formData: ServerContactFormData = {
+        ...data,
+        recaptchaToken,
+      };
 
-      const result = await response.json();
+      // Call server action
+      const result = await sendContactEmail(formData);
 
-      if (response.ok) {
-        setSuccessMessage(
-          "Thank you for reaching out! I will get back to you as soon as possible."
-        );
+      if (result.success) {
+        setSuccessMessage(result.message);
         setErrorMessage("");
         reset();
         // Reset reCAPTCHA
         recaptchaRef.current?.reset();
         setRecaptchaToken(null);
       } else {
-        console.error("Failed to send email:", result.error);
+        console.error("Failed to send email:", result.message);
         setSuccessMessage(""); // Clear any success message
-        setErrorMessage(
-          result.error || "Failed to send email. Please try again later."
-        );
+        setErrorMessage(result.message);
       }
     } catch (error) {
       console.error("Error:", error);
