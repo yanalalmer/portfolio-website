@@ -114,7 +114,7 @@ export const ThemeSelector = () => {
       {/* Theme Selector Button */}
       <button
         onClick={togglePanel}
-        className="fixed top-8 right-8 p-4 bg-bgOffset text-bg rounded-full font-medium hover:opacity-80 transition-all duration-300 ease-in-out flex items-center gap-2 cursor-pointer"
+        className="absolute top-8 right-8 p-4 bg-bgOffset text-bg rounded-full font-medium hover:opacity-80 transition-all duration-300 ease-in-out flex items-center gap-2 cursor-pointer"
         aria-expanded={isOpen}
         aria-label="Toggle theme selector"
       >

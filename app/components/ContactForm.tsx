@@ -158,12 +158,12 @@ export const ContactForm = () => {
         </span>
         <div>
           <button
-            className={`mb-16 ${
+            className={`mb-16 flex items-center rounded-full bg-secondary text-white px-4 py-2 text-xs font-bold leading-5 capitalize cursor-pointer hover:opacity-80 transition-all ease-in-out ${
               isSubmitting ? "opacity-40 cursor-not-allowed" : ""
             }`}
             disabled={isSubmitting}
           >
-            {isSubmitting ? "sending..." : "send message"}
+            {isSubmitting ? "sending..." : "send a message"}
           </button>
         </div>
       </form>
