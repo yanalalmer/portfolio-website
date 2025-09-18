@@ -143,7 +143,7 @@ export const ThemeSelector = () => {
               <button
                 key={theme.id}
                 onClick={() => handleThemeSelect(theme.id)}
-                className={`p-4 rounded-lg border-2 transition-all duration-200 flex flex-col items-center justify-center ${
+                className={`p-4 cursor-pointer rounded-lg border-2 transition-all duration-200 flex flex-col items-center justify-center ${
                   currentTheme === theme.id
                     ? "border-primary bg-primary/10 text-primary"
                     : "border-border hover:border-primary/50 text-text hover:bg-bgOffset"
