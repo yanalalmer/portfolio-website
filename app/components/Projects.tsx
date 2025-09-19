@@ -1,6 +1,7 @@
 import { UpArrowIcon } from "@icons";
 import Link from "next/link";
 import Image from "next/image";
+import { projects } from "@data";
 
 export const Projects = () => {
   return (
@@ -16,7 +17,7 @@ export const Projects = () => {
       </div>
       <div>
         <ul className="group/list">
-          {projects.map((project) => (
+          {projects.slice(0, 5).map((project) => (
             <li className="mb-12">
               <div className="group relative grid gap-4 pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50 cursor-pointer">
                 <div className="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-bgOffset"></div>
@@ -88,34 +89,3 @@ export const Projects = () => {
     </section>
   );
 };
-
-const projects = [
-  {
-    title: "Dumpert",
-    description:
-      "Dumpert is the most popular video platforms in the Netherlands. The platform has found its way to the heart of the critical millennial and is an indispensable part of the Dutch media landscape. All the bizarre, funny and scandalous content that the internet has to offer can be found here. Visitors actively contribute by “dumping” a stream of videos and pictures.",
-    url: "https://www.dumpert.nl/",
-    image: "/images/dumpert.jpg",
-  },
-  {
-    title: "KPN Newsroom",
-    description:
-      "The KPN newsroom is a platform that allows the KPN media team upload their latest news, press releases, images and social media content. The platform is created for corporate communications and public relations materials.",
-    url: "https://www.overons.kpn/nieuws/",
-    image: "/images/kpn.png",
-  },
-  {
-    title: "Smart Newsroom",
-    description:
-      "Similar to the KPN newsroom, the Smart newsroom is a platform that allows the famous German car brand media team upload their latest news, press releases, images and social media content. The platform is created for corporate communications and public relations materials.",
-    url: "https://media.smart.com/",
-    image: "/images/smart.jpg",
-  },
-  {
-    title: "Toekomst Kamer",
-    description:
-      "The Toekomst Kamer is a platform that allows the Dutch people to vote on the most important issues of the day. From voting on sustainability issues to voting on the future of AI.",
-    url: "https://detoekomstkamer.nl/",
-    image: "/images/toekomst.jpg",
-  },
-];

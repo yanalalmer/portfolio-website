@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { RightArrowIcon } from "@icons";
+import { projects } from "@data";
+import { ProjectsTable } from "@components";
 
 export default function Archive() {
   return (
@@ -24,6 +26,7 @@ export default function Archive() {
           </h1>
         </header>
       </div>
+      <ProjectsTable projects={projects} />
     </main>
   );
 }

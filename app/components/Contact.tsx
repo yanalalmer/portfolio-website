@@ -30,7 +30,7 @@ export const Contact = () => {
           </a>
         </h3>
       </div>
-      <div>
+      <div className="pb-32">
         <h3 className="text-lg font-bold">Or drop me a message below:</h3>
         <ContactForm />
       </div>

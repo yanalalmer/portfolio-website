@@ -6,3 +6,4 @@ export * from "./Experience";
 export * from "./Projects";
 export * from "./Contact";
 export * from "./ContactForm";
+export * from "./ProjectsTable";
