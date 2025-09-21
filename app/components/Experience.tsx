@@ -16,7 +16,7 @@ export const Experience = () => {
       <div>
         <ol className="group/list">
           {projects.map((project) => (
-            <li className="mb-12 cursor-pointer">
+            <li className="mb-12 cursor-pointer" key={project.title}>
               <div className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
                 <div className="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-bgOffset"></div>
                 <header
@@ -58,7 +58,7 @@ export const Experience = () => {
                     aria-label="Technologies used"
                   >
                     {project.technologies.map((technology) => (
-                      <li className="mr-1.5 mt-2">
+                      <li className="mr-1.5 mt-2" key={technology}>
                         <div className="flex items-center rounded-full bg-secondary text-white px-3 py-1 text-xs font-medium leading-5">
                           {technology}
                         </div>

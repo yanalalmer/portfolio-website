@@ -69,4 +69,24 @@ export const projects = [
     company: "Creative Clicks",
     technologies: ["React", "Node.js", "PostgreSQL", "Socket.io"],
   },
+  {
+    title: "Creative Clicks",
+    description:
+      "Creative Clicks is a full-service digital marketing agency that helps businesses grow their online presence and reach their target audience.",
+    url: "https://creativeclicks.com/",
+    image: "",
+    year: "2025",
+    company: "Creative Clicks",
+    technologies: ["React", "Node.js", "PostgreSQL", "Socket.io"],
+  },
+  {
+    title: "Jong & Out",
+    description:
+      "Jong & Out is a dating app for young people to find their perfect match.",
+    url: "https://www.jongenout.nl/",
+    image: "",
+    year: "2023",
+    company: "Independent",
+    technologies: ["React", "Node.js", "PostgreSQL", "Socket.io"],
+  },
 ];
