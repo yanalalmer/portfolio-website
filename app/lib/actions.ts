@@ -60,7 +60,7 @@ export async function sendContactEmail(
     }
 
     // Configure Nodemailer transporter for Titan email
-    const transporter = nodemailer.createTransporter({
+    const transporter = nodemailer.createTransport({
       host: "smtp.titan.email",
       port: 587,
       secure: false, // Use STARTTLS
