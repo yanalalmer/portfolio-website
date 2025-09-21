@@ -19,13 +19,9 @@
     ],
     "paths": {
       "@app/*": ["./*"],
-      "@components/*": ["./app/components/*"],
-      "@components": ["./app/components"],
-      "@data": ["./app/data"],
-      "@lib/*": ["./app/lib/*"],
-      "@hooks/*": ["./app/hooks/*"],
-      "@icons": ["./public/icons"],
-      "@types": ["./app/types"]
+      "@components": ["./app/components/"],
+      "@icons": ["./app/icons/"],
+      "@data": ["./app/data"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

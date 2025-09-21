@@ -1,30 +1,12 @@
-import Link from 'next/link';
-import {
-  Hero,
-  AboutPara,
-  ProjectsGrid,
-  Container,
-  PrimaryButton,
-  Spacer,
-  SectionTitle,
-} from '@components';
+import { Header, Content } from "@components";
 
-export default async function Home() {
+export default function Home() {
   return (
-    <main>
-      <Container>
-        <Hero />
-        <Spacer />
-        <SectionTitle title="a bit about me" id="about" />
-        <AboutPara />
-        <Spacer />
-        <SectionTitle title="creating next level projects" />
-        <ProjectsGrid homePage />
-        <Link href="/work" className="w-full text-center block">
-          <PrimaryButton text="more work" />
-        </Link>
-        <Spacer />
-      </Container>
-    </main>
+    <div className="mx-auto min-h-screen max-w-screen-xl px-6 py-12 font-sans md:px-12 md:py-16 lg:py-0">
+      <div className="lg:flex lg:justify-between lg:gap-4">
+        <Header />
+        <Content />
+      </div>
+    </div>
   );
 }
