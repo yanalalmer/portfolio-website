@@ -6,7 +6,6 @@ export interface ContactFormData {
   name: string;
   email: string;
   message: string;
-  turnstileToken: string;
 }
 
 export interface ActionResult {
@@ -14,48 +13,17 @@ export interface ActionResult {
   message: string;
 }
 
-// Verify Turnstile token
-async function verifyTurnstile(token: string): Promise<boolean> {
-  try {
-    const response = await fetch(
-      "https://challenges.cloudflare.com/turnstile/v0/siteverify",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: `secret=${process.env.TURNSTILE_SECRET_KEY}&response=${token}`,
-      }
-    );
-
-    const data = await response.json();
-    return data.success;
-  } catch (error) {
-    console.error("Turnstile verification failed:", error);
-    return false;
-  }
-}
-
 export async function sendContactEmail(
   formData: ContactFormData
 ): Promise<ActionResult> {
   try {
-    const { name, email, message, turnstileToken } = formData;
+    const { name, email, message } = formData;
 
     // Validate required fields
-    if (!name || !email || !message || !turnstileToken) {
+    if (!name || !email || !message) {
       return {
         success: false,
         message: "All fields are required",
-      };
-    }
-
-    // Verify Turnstile
-    const isTurnstileValid = await verifyTurnstile(turnstileToken);
-    if (!isTurnstileValid) {
-      return {
-        success: false,
-        message: "Security verification failed. Please try again.",
       };
     }
 
