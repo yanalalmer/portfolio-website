@@ -14,10 +14,13 @@ declare global {
       reset: () => void;
       render: (
         container: Element,
-        options: { sitekey: string; callback: string; theme: string }
+        options: {
+          sitekey: string;
+          callback: (token: string | null) => void;
+          theme: string;
+        }
       ) => void;
     };
-    handleTurnstileCallback?: (token: string | null) => void;
   }
 }
 
@@ -60,25 +63,9 @@ export const ContactForm = () => {
     message: string;
   };
 
-  const handleTurnstileChange = React.useCallback((token: string | null) => {
-    setTurnstileToken(token);
-  }, []);
-
   React.useEffect(() => {
     setIsClient(true);
   }, []);
-
-  React.useEffect(() => {
-    if (isClient) {
-      window.handleTurnstileCallback = handleTurnstileChange;
-    }
-
-    return () => {
-      if (isClient) {
-        delete window.handleTurnstileCallback;
-      }
-    };
-  }, [handleTurnstileChange, isClient]);
 
   React.useEffect(() => {
     if (!isClient) return;
@@ -90,7 +77,9 @@ export const ContactForm = () => {
           try {
             window.turnstile.render(widgetContainer, {
               sitekey: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "",
-              callback: "handleTurnstileCallback",
+              callback: (token: string | null) => {
+                setTurnstileToken(token);
+              },
               theme: "light",
             });
           } catch (error) {
