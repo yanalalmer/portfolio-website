@@ -3,11 +3,23 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import React from "react";
-import ReCAPTCHA from "react-google-recaptcha";
 import {
   sendContactEmail,
   type ContactFormData as ServerContactFormData,
 } from "../lib/actions";
+
+declare global {
+  interface Window {
+    turnstile?: {
+      reset: () => void;
+      render: (
+        container: Element,
+        options: { sitekey: string; callback: string; theme: string }
+      ) => void;
+    };
+    handleTurnstileCallback?: (token: string | null) => void;
+  }
+}
 
 const formSchema = z.object({
   name: z
@@ -37,10 +49,10 @@ export const ContactForm = () => {
   const [successMessage, setSuccessMessage] = React.useState("");
   const [errorMessage, setErrorMessage] = React.useState("");
   const [isSubmitting, setIsSubmitting] = React.useState(false);
-  const [recaptchaToken, setRecaptchaToken] = React.useState<string | null>(
+  const [turnstileToken, setTurnstileToken] = React.useState<string | null>(
     null
   );
-  const recaptchaRef = React.useRef<ReCAPTCHA>(null);
+  const [isClient, setIsClient] = React.useState(false);
 
   type ContactFormData = {
     name: string;
@@ -48,42 +60,83 @@ export const ContactForm = () => {
     message: string;
   };
 
-  const handleRecaptchaChange = (token: string | null) => {
-    setRecaptchaToken(token);
-  };
+  const handleTurnstileChange = React.useCallback((token: string | null) => {
+    setTurnstileToken(token);
+  }, []);
+
+  React.useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  React.useEffect(() => {
+    if (isClient) {
+      window.handleTurnstileCallback = handleTurnstileChange;
+    }
+
+    return () => {
+      if (isClient) {
+        delete window.handleTurnstileCallback;
+      }
+    };
+  }, [handleTurnstileChange, isClient]);
+
+  React.useEffect(() => {
+    if (!isClient) return;
+
+    const renderTurnstile = () => {
+      if (typeof window !== "undefined" && window.turnstile) {
+        const widgetContainer = document.querySelector(".cf-turnstile");
+        if (widgetContainer && widgetContainer.children.length === 0) {
+          try {
+            window.turnstile.render(widgetContainer, {
+              sitekey: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "",
+              callback: "handleTurnstileCallback",
+              theme: "light",
+            });
+          } catch (error) {
+            console.error("Turnstile render failed:", error);
+          }
+        }
+      }
+    };
+
+    renderTurnstile();
+    const timer = setTimeout(renderTurnstile, 1000);
+
+    return () => clearTimeout(timer);
+  }, [isClient]);
 
   const onSubmit = async (data: ContactFormData) => {
-    if (!recaptchaToken) {
-      setErrorMessage("Please complete the reCAPTCHA verification");
+    if (!turnstileToken) {
+      setErrorMessage("Please complete the security verification");
       return;
     }
 
     setIsSubmitting(true);
     try {
-      // Prepare data for server action
       const formData: ServerContactFormData = {
         ...data,
-        recaptchaToken,
+        turnstileToken,
       };
 
-      // Call server action
       const result = await sendContactEmail(formData);
 
       if (result.success) {
         setSuccessMessage(result.message);
         setErrorMessage("");
         reset();
-        // Reset reCAPTCHA
-        recaptchaRef.current?.reset();
-        setRecaptchaToken(null);
+        setTurnstileToken(null);
+        if (isClient && typeof window !== "undefined" && window.turnstile) {
+          window.turnstile.reset();
+        }
       } else {
         console.error("Failed to send email:", result.message);
-        setSuccessMessage(""); // Clear any success message
+        setSuccessMessage("");
         setErrorMessage(result.message);
       }
     } catch (error) {
       console.error("Error:", error);
-      setSuccessMessage(""); // Clear any success message
+      setSuccessMessage("");
       setErrorMessage("An unexpected error occurred. Please try again later.");
     } finally {
       setIsSubmitting(false);
@@ -140,12 +193,26 @@ export const ContactForm = () => {
         </div>
 
         <div className="mb-6">
-          <ReCAPTCHA
-            ref={recaptchaRef}
-            sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
-            onChange={handleRecaptchaChange}
-            className="mt-4"
-          />
+          {isClient ? (
+            <div
+              className="cf-turnstile mt-4"
+              data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
+              data-callback="handleTurnstileCallback"
+              data-theme="light"
+            />
+          ) : (
+            <div className="mt-4" style={{ minHeight: "65px" }}>
+              <div className="flex items-center justify-center h-full text-gray-500">
+                Loading security verification...
+              </div>
+            </div>
+          )}
+          {!process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && (
+            <div className="text-red text-sm mt-2">
+              Turnstile site key not configured. Please add
+              NEXT_PUBLIC_TURNSTILE_SITE_KEY to your environment variables.
+            </div>
+          )}
         </div>
 
         {errorMessage && (

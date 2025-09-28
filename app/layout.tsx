@@ -100,6 +100,13 @@ export default function RootLayout({
       lang="en"
       className={`${lexend.variable} font-sans ${frank.variable} font-serif classic`}
     >
+      <head>
+        <script
+          src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+          async
+          defer
+        />
+      </head>
       <body className="antialiased bg-bg text-text">
         <ThemeSelector />
         {children}
