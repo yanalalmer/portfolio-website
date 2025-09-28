@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { GitHubIcon, LinkedInIcon, CodePenIcon } from "@icons";
 
 export const Header = () => {
   const [activeSection, setActiveSection] = useState("");
@@ -41,7 +42,7 @@ export const Header = () => {
         </p>
         <nav className="nav hidden lg:block">
           <ul className="mt-16 w-max">
-            {links.map((link) => {
+            {links.map((link, idx) => {
               const isActive = activeSection === link.href.substring(1);
 
               const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -60,7 +61,7 @@ export const Header = () => {
 
               return (
                 <Link
-                  key={link.id}
+                  key={idx}
                   href={link.href}
                   onClick={handleClick}
                   className="group flex items-center cursor-pointer"
@@ -89,7 +90,24 @@ export const Header = () => {
           </ul>
         </nav>
       </div>
-      <ul></ul>
+      <ul className="ml-1 mt-8 flex items-center" aria-label="Social media">
+        {socials.map((social, idx) => (
+          <li key={idx} className="mr-5 shrink-0 text-xs cursor-pointer">
+            <a
+              href={social.href}
+              target="_blank"
+              rel="noreferrer noopener"
+              aria-label={`${social.label} (opens in a new tab)`}
+              title={social.label}
+            >
+              <span className="sr-only">{social.label}</span>
+              <span className="block hover:text-textOffset transition-colors ease-in-out duration-300 h-6 w-6">
+                {social.icon}
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
     </header>
   );
 };
@@ -99,4 +117,25 @@ const links = [
   { id: 2, href: "#experience", label: "Experience" },
   { id: 3, href: "#projects", label: "Projects" },
   { id: 4, href: "#contact", label: "Contact" },
+];
+
+const socials = [
+  {
+    id: 1,
+    href: "https://github.com/yanalalmer",
+    label: "GitHub",
+    icon: <GitHubIcon />,
+  },
+  {
+    id: 2,
+    href: "https://www.linkedin.com/in/yanalalmer/",
+    label: "LinkedIn",
+    icon: <LinkedInIcon />,
+  },
+  {
+    id: 3,
+    href: "https://codepen.io/yanalalmer",
+    label: "CodePen",
+    icon: <CodePenIcon />,
+  },
 ];

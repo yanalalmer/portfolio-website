@@ -38,8 +38,8 @@ export const ProjectsTable = ({ projects }: { projects: Project[] }) => {
           </tr>
         </thead>
         <tbody>
-          {sortedProjects.map((project, index) => (
-            <tr key={index} className="border-b border-border last:border-none">
+          {sortedProjects.map((project, idx) => (
+            <tr key={idx} className="border-b border-border last:border-none">
               <td className="py-4 pr-4 align-top text-sm">
                 <div className="translate-y-px text-textOffset">
                   {project.year}
@@ -75,8 +75,8 @@ export const ProjectsTable = ({ projects }: { projects: Project[] }) => {
               </td>
               <td className="hidden py-4 pr-4 align-top lg:table-cell">
                 <ul className="flex -translate-y-1.5 flex-wrap">
-                  {project.technologies.map((tech, techIndex) => (
-                    <li key={techIndex} className="my-1 mr-1.5">
+                  {project.technologies.map((tech, idx) => (
+                    <li key={idx} className="my-1 mr-1.5">
                       <div className="flex items-center rounded-full bg-secondary text-white px-3 py-1 text-xs font-medium leading-5">
                         {tech}
                       </div>

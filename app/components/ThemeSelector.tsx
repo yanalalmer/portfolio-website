@@ -151,9 +151,9 @@ export const ThemeSelector = () => {
               >
                 <div className="font-bold mb-3 text-sm fp">{theme.name}</div>
                 <div className="flex gap-1">
-                  {theme.palette.map((color, index) => (
+                  {theme.palette.map((color, idx) => (
                     <div
-                      key={index}
+                      key={idx}
                       className="md:w-6 md:h-6 w-4 h-4 rounded-full border border-border/30"
                       style={{ backgroundColor: color }}
                       title={color}

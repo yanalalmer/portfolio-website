@@ -1,0 +1,26 @@
+{
+  "name": "Yanal Almir | AI-Powered Frontend Developer & Freelance Engineer",
+  "short_name": "Yanal Almir",
+  "description": "Freelance frontend developer specializing in AI-powered web development. Expert in React, TypeScript, Next.js, and modern web technologies.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "categories": ["technology", "portfolio", "business"],
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "16x16 32x32 48x48",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "48x48",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

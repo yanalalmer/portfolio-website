@@ -17,8 +17,8 @@ export const Projects = () => {
       </div>
       <div>
         <ul className="group/list">
-          {projects.slice(0, 5).map((project) => (
-            <li className="mb-12" key={project.title}>
+          {projects.slice(0, 5).map((project, idx) => (
+            <li className="mb-12" key={idx}>
               <div className="group relative grid gap-4 pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50 cursor-pointer">
                 <div className="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-bgOffset"></div>
                 <div className="z-10 sm:order-2 sm:col-span-6">
