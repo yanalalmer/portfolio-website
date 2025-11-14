@@ -47,11 +47,7 @@ export const Experience = () => {
                     </div>
                   </h3>
                   <p className="mt-2 text-sm leading-normal">
-                    Build and maintain critical components used to construct
-                    Klaviyo’s frontend, across the whole product. Work closely
-                    with cross-functional teams, including developers,
-                    designers, and product managers, to implement and advocate
-                    for best practices in web accessibility.
+                    {project.description}
                   </p>
                   <ul
                     className="mt-2 flex flex-wrap"
@@ -82,7 +78,7 @@ const projects = [
     company: "Creative Clicks",
     companyUrl: "https://creativeclicks.com/",
     description:
-      "Build and maintain critical components used to construct Klaviyo’s frontend, across the whole product. Work closely with cross-functional teams, including developers, designers, and product managers, to implement and advocate for best practices in web accessibility.",
+      "As a full service digital marketing agency, I work on a wide range of projects, from small landing pages to large scale web applications. I'm responsible for the development of full scale applications from scratch to production.",
     technologies: [
       "TypeScript",
       "Next.js",
@@ -97,7 +93,7 @@ const projects = [
     company: "Mediahuis Nederland",
     companyUrl: "https://www.mediahuis.nl/",
     description:
-      "Build and maintain critical components used to construct Klaviyo’s frontend, across the whole product. Work closely with cross-functional teams, including developers, designers, and product managers, to implement and advocate for best practices in web accessibility.",
+      "Built and maintained the rebranded version of the popular video platform Dumpert.nl, including implementing new features and improving the performance of the platform.",
     technologies: ["JavaScript", "TypeScript", "React", "GCP", "Next.js"],
   },
   {
@@ -106,7 +102,7 @@ const projects = [
     company: "PressPage",
     companyUrl: "https://www.presspage.com/",
     description:
-      "Build and maintain critical components used to construct Klaviyo’s frontend, across the whole product. Work closely with cross-functional teams, including developers, designers, and product managers, to implement and advocate for best practices in web accessibility.",
+      "Worked on the development of a number of newsrooms for clients, including top notch international brands such as Smart, KPN and more.",
     technologies: ["JavaScript", "React", "Vue", "SCSS"],
   },
   {
@@ -115,7 +111,7 @@ const projects = [
     company: "CarSys",
     companyUrl: "https://www.carsys.online/",
     description:
-      "Build and maintain critical components used to construct Klaviyo’s frontend, across the whole product. Work closely with cross-functional teams, including developers, designers, and product managers, to implement and advocate for best practices in web accessibility.",
+      "Developed and maintained the CarSys garage management system, a comprehensive SaaS solution for managing car garages and inventory.",
     technologies: ["JavaScript", "React", "Bootstrap", "jQuery"],
   },
   {
@@ -124,7 +120,16 @@ const projects = [
     company: "Code Matrix Zone",
     companyUrl: "https://codematrix.nl/",
     description:
-      "Build and maintain critical components used to construct Klaviyo’s frontend, across the whole product. Work closely with cross-functional teams, including developers, designers, and product managers, to implement and advocate for best practices in web accessibility.",
+      "Worked on the development of a number of websites for clients, including e-commerce websites, landing pages and corporate websites.",
+    technologies: ["JavaScript", "React", "Bootstrap", "HTML", "CSS"],
+  },
+  {
+    date: "Aug 2014 - Sep 2014",
+    title: "Frontend Developer",
+    company: "FP& McCann",
+    companyUrl: "https://mccann.com/",
+    description:
+      "Maintained a group of seven web applications for FP& McCann, including official group websites and mobile application.",
     technologies: ["JavaScript", "React", "Bootstrap", "HTML", "CSS"],
   },
 ];

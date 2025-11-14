@@ -1,5 +1,21 @@
 export const projects = [
   {
+    title: "AuthentiQAI",
+    description:
+      "AuthentiqAI.io is a powerful platform built to streamline digital content creation with AI. By combining advanced tools with an intuitive interface, it makes producing authentic copy for social media, email, and e-commerce faster and more efficient than ever.",
+    url: "https://authentiqai.io/",
+    image: "/images/authentiq.png",
+    year: "2025",
+    company: "Creative Clicks",
+    technologies: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "AWS",
+      "Anthropic Claude",
+    ],
+  },
+  {
     title: "Dumpert",
     description:
       "Dumpert is the most popular video platforms in the Netherlands. The platform has found its way to the heart of the critical millennial and is an indispensable part of the Dutch media landscape. All the bizarre, funny and scandalous content that the internet has to offer can be found here. Visitors actively contribute by 'dumping' a stream of videos and pictures.",
@@ -7,7 +23,13 @@ export const projects = [
     image: "/images/dumpert.jpg",
     year: "2024",
     company: "Mediahuis Nederland",
-    technologies: ["React", "TypeScript", "Node.js", "AWS"],
+    technologies: [
+      "React",
+      "TypeScript",
+      "Node.js",
+      "Google Cloud",
+      "Tailwind CSS",
+    ],
   },
   {
     title: "KPN Newsroom",
@@ -17,7 +39,7 @@ export const projects = [
     image: "/images/kpn.png",
     year: "2023",
     company: "PressPage",
-    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Contentful"],
+    technologies: ["Svelte", "JavaScript", "SCSS", "jQuery", "Vite"],
   },
   {
     title: "Smart Newsroom",
@@ -27,7 +49,7 @@ export const projects = [
     image: "/images/smart.jpg",
     year: "2023",
     company: "PressPage",
-    technologies: ["Vue.js", "JavaScript", "SCSS", "Strapi"],
+    technologies: ["Vue.js", "JavaScript", "SCSS", "jQuery", "Contentful"],
   },
   {
     title: "Toekomst Kamer",
@@ -37,7 +59,7 @@ export const projects = [
     image: "/images/toekomst.jpg",
     year: "2022",
     company: "Independent",
-    technologies: ["React", "Node.js", "PostgreSQL", "Socket.io"],
+    technologies: ["React", "TypeScript", "SCSS", "Node.js", "Firebase"],
   },
   {
     title: "kentucky owl",
@@ -47,7 +69,7 @@ export const projects = [
     image: "/images/kentucky.png",
     year: "2022",
     company: "Independent",
-    technologies: ["React", "Node.js", "PostgreSQL", "Socket.io"],
+    technologies: ["React", "TypeScript", "PostgreSQL", "Shopify", "Hydrogen"],
   },
   {
     title: "Cradle to Cradle",
@@ -57,7 +79,7 @@ export const projects = [
     image: "/images/cradle.png",
     year: "2022",
     company: "Independent",
-    technologies: ["React", "Node.js", "PostgreSQL", "Socket.io"],
+    technologies: ["React", "TypeScript", "Salesforce", "Remix", "MySQL"],
   },
   {
     title: "Max Health",
@@ -65,9 +87,9 @@ export const projects = [
       "Simplify your health journey with our all-in-one telemedicine platform, providing effective treatments and dedicated professional support.",
     url: "https://max-health.com/",
     image: "/images/max.webp",
-    year: "2024",
+    year: "2025",
     company: "Creative Clicks",
-    technologies: ["React", "Node.js", "PostgreSQL", "Socket.io"],
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "AWS", "Node.js"],
   },
   {
     title: "Creative Clicks",
@@ -77,7 +99,7 @@ export const projects = [
     image: "",
     year: "2025",
     company: "Creative Clicks",
-    technologies: ["React", "Node.js", "PostgreSQL", "Socket.io"],
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "AWS", "Node.js"],
   },
   {
     title: "Jong & Out",
@@ -87,6 +109,6 @@ export const projects = [
     image: "",
     year: "2023",
     company: "Independent",
-    technologies: ["React", "Node.js", "PostgreSQL", "Socket.io"],
+    technologies: ["React Native", "TypeScript", "Expo", "Firebase", "SCSS"],
   },
 ];

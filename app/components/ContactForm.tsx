@@ -88,7 +88,9 @@ export const ContactForm = () => {
             }`}
             onChange={handleInputChange}
           />
-          <span className="text-red">{errors.name?.message || "\u00A0"}</span>
+          <span className="text-red-500">
+            {errors.name?.message || "\u00A0"}
+          </span>
         </div>
         <div className="mb-4">
           <input
@@ -100,7 +102,7 @@ export const ContactForm = () => {
             }`}
             onChange={handleInputChange}
           />
-          <span className="text-red mb-4">
+          <span className="text-red-500 mb-4">
             {errors.email?.message || "\u00A0"}
           </span>
         </div>
@@ -114,7 +116,7 @@ export const ContactForm = () => {
             }`}
             onChange={handleInputChange}
           />
-          <span className="text-red mb-4">
+          <span className="text-red-500 mb-4">
             {errors.message?.message || "\u00A0"}
           </span>
         </div>
