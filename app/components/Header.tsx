@@ -35,7 +35,7 @@ export const Header = () => {
           Yanal Almir
         </h1>
         <h2 className="mt-3 text-lg font-medium tracking-tight">
-          Freelance Frontend Engineer
+          Frontend Engineer
         </h2>
         <p className="mt-4 max-w-xs leading-normal">
           I build accessible, performant, and user-friendly web applications.
