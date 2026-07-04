@@ -68,18 +68,16 @@ export const Header = () => {
                 >
                   <li className="group flex items-center py-3">
                     <span
-                      className={`nav-indicator mr-4 h-px bg-text transition-all motion-reduce:transition-none ${
-                        isActive
-                          ? "w-16 !bg-primary"
-                          : "w-8 group-hover:w-16 group-hover:bg-primary group-focus-visible:w-16 group-focus-visible:bg-primary"
-                      }`}
+                      className={`nav-indicator mr-4 h-px bg-text transition-all motion-reduce:transition-none ${isActive
+                        ? "w-16 !bg-primary"
+                        : "w-8 group-hover:w-16 group-hover:bg-primary group-focus-visible:w-16 group-focus-visible:bg-primary"
+                        }`}
                     />
                     <span
-                      className={`nav-text text-xs font-bold uppercase tracking-widest transition-colors motion-reduce:transition-none ${
-                        isActive
-                          ? "text-primary"
-                          : "text-text group-hover:text-primary group-focus-visible:text-primary"
-                      }`}
+                      className={`nav-text text-xs font-bold uppercase tracking-widest transition-colors motion-reduce:transition-none ${isActive
+                        ? "text-primary"
+                        : "text-text group-hover:text-primary group-focus-visible:text-primary"
+                        }`}
                     >
                       {link.label}
                     </span>

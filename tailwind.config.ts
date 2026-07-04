@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["var(--font-montserrat)", "sans-serif"],
+      },
       colors: {
         bg: "var(--color-bg)",
         bgOffset: "var(--color-bg-offset)",

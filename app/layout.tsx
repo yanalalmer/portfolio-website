@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
-import { Lexend_Deca, Frank_Ruhl_Libre } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
 import { ThemeSelector } from "@components";
 
-const lexend = Lexend_Deca({ subsets: ["latin"], variable: "--font-lexend" });
-const frank = Frank_Ruhl_Libre({
+const montserrat = Montserrat({
   subsets: ["latin"],
-  variable: "--font-frank",
+  variable: "--font-montserrat",
 });
 
 export const metadata: Metadata = {
@@ -98,7 +97,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${lexend.variable} font-sans ${frank.variable} font-serif classic`}
+      className={`${montserrat.variable} font-sans classic`}
     >
       <head>
         <script
