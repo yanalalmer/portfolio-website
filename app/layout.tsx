@@ -10,11 +10,11 @@ const montserrat = Montserrat({
 
 export const metadata: Metadata = {
   title: {
-    default: "Yanal Almir | AI-Powered Frontend Developer & Freelance Engineer",
+    default: "Yanal Almir | AI-Powered Frontend Developer",
     template: "%s | Yanal Almir",
   },
   description:
-    "Freelance frontend developer specializing in AI-powered web development. Expert in React, TypeScript, Next.js, and modern web technologies. Building pixel-perfect, accessible user interfaces for high-traffic platforms serving millions of users.",
+    "Frontend developer specializing in AI-powered web development. Expert in React, TypeScript, Next.js, and modern web technologies. Building pixel-perfect, accessible user interfaces for high-traffic platforms serving millions of users.",
   keywords: [
     "frontend developer",
     "freelance developer",

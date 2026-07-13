@@ -2,59 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { ThemeSelectIcon, ClosingIcon } from "@icons";
+import { themes } from "@data";
 
-const themes = [
-  {
-    id: "classic",
-    name: "Classic",
-    palette: ["#ffffff", "#ff335f", "#43a9a3", "#373a3c", "#818a91"],
-  },
-  {
-    id: "dark",
-    name: "Dark",
-    palette: ["#0e141b", "#ff5277", "#43a9a3", "#ffffff", "#818a91"],
-  },
-  {
-    id: "beach",
-    name: "Koopa Beach",
-    palette: ["#fffffe", "#ff9d00", "#bae8e8", "#272343", "#2d334a"],
-  },
-  {
-    id: "choco",
-    name: "Choco Mountain",
-    palette: ["#55423d", "#f3ab87", "#e78fb3", "#fffffe", "#ffc0ad"],
-  },
-  {
-    id: "moomoo",
-    name: "Moo Moo Farm",
-    palette: ["#fef6e4", "#f582ae", "#8bd3dd", "#172c66", "#006e8a"],
-  },
-  {
-    id: "bowser",
-    name: "Bowser's Castle",
-    palette: ["#16161a", "#7f5af0", "#2cb67d", "#fffffe", "#94a1b2"],
-  },
-  {
-    id: "yoshi",
-    name: "Yoshi Valley",
-    palette: ["#fafbf5", "#99c221", "#e55812", "#41474c", "#757d84"],
-  },
-  {
-    id: "rainbow",
-    name: "Rainbow Road",
-    palette: ["#140527", "#49f5f7", "#01c317", "#feff00", "#ff464d"],
-  },
-  {
-    id: "lobster",
-    name: "Lobster Life",
-    palette: ["#fcddd4", "#b62b2b", "#fb9f13", "#4b1313", "#146caa"],
-  },
-  {
-    id: "hackernews",
-    name: "Hacker News",
-    palette: ["#f6f6ef", "#ff6600", "#ff6600", "#000000", "#828282"],
-  },
-];
 
 export const ThemeSelector = () => {
   const [currentTheme, setCurrentTheme] = useState("classic");
@@ -114,7 +63,7 @@ export const ThemeSelector = () => {
       {/* Theme Selector Button */}
       <button
         onClick={togglePanel}
-        className="fixed top-8 right-8 z-50 p-4 bg-bgOffset text-bg rounded-full font-medium hover:opacity-80 transition-all duration-300 ease-in-out flex items-center gap-2 cursor-pointer"
+        className="fixed lg:top-8 lg:right-8 right-3 top-3 z-50 lg:p-4 p-2 bg-bgOffset text-bg rounded-full font-medium hover:opacity-80 transition-all duration-300 ease-in-out flex items-center gap-2 cursor-pointer"
         aria-expanded={isOpen}
         aria-label="Toggle theme selector"
       >
