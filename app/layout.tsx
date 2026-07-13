@@ -28,7 +28,6 @@ export const metadata: Metadata = {
     "high-traffic applications",
     "e-commerce development",
     "corporate applications",
-    "video platforms",
     "web performance",
     "modern web technologies",
   ],
