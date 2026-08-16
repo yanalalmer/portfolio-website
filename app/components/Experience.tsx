@@ -78,7 +78,7 @@ const projects = [
     company: 'Creative Clicks',
     companyUrl: 'https://creativeclicks.com/',
     description:
-      'Architecting the monorepo behind an estate of international brand sites — package topology, shared contracts, and the build graph that keeps [N] surfaces shipping independently from one repository.',
+      'Architecting the monorepo behind an estate of international brand sites — package topology, shared contracts, and the build graph that keeps multiple surfaces shipping independently from one repository.',
     technologies: ['TypeScript', 'Next.js', 'Turborepo', 'AWS', 'Headless CMS'],
   },
   {

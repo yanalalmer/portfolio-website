@@ -2,6 +2,8 @@
 
 import nodemailer from 'nodemailer';
 
+const CONTACT_EMAIL = 'contact@yanalalmir.com';
+
 export interface ContactFormData {
   name: string;
   email: string;
@@ -27,14 +29,16 @@ export async function sendContactEmail(
       };
     }
 
+    const mailbox = process.env.TITAN_EMAIL_USER || CONTACT_EMAIL;
+
     // Configure Nodemailer transporter for Titan email
     const transporter = nodemailer.createTransport({
       host: 'smtp.titan.email',
       port: 587,
       secure: false, // Use STARTTLS
       auth: {
-        user: process.env.TITAN_EMAIL_USER, // Your Titan email address
-        pass: process.env.TITAN_EMAIL_PASSWORD, // Your Titan email password or app password
+        user: mailbox,
+        pass: process.env.TITAN_EMAIL_PASSWORD, // Titan mailbox password or app password
       },
       tls: {
         ciphers: 'SSLv3',
@@ -55,8 +59,8 @@ export async function sendContactEmail(
 
     // Email content
     const mailOptions = {
-      from: process.env.TITAN_EMAIL_USER, // Your verified Titan email
-      to: process.env.TITAN_EMAIL_USER, // Send to yourself
+      from: mailbox,
+      to: CONTACT_EMAIL,
       replyTo: email, // User's email for easy reply
       subject: `Portfolio Contact Form: Message from ${name}`,
       html: `
