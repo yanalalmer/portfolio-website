@@ -96,7 +96,7 @@ html {
   --color-primary: #b62b2b;
   --color-primary-offset: #ff0030;
   --color-secondary: #fb9f13;
-  --cursor-default: url("/cursors/lobster-cursor.png"), auto;
+  --cursor-default: url('/cursors/lobster-cursor.png'), auto;
 }
 .hackernews {
   --color-bg: #f6f6ef;
@@ -113,6 +113,6 @@ html {
 }
 button,
 a,
-[role="button"] {
+[role='button'] {
   cursor: var(--cursor-default);
 }

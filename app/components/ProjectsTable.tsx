@@ -1,5 +1,5 @@
-import { UpArrowIcon } from "@icons";
-import Link from "next/link";
+import { UpArrowIcon } from '@icons';
+import Link from 'next/link';
 
 interface Project {
   title: string;
@@ -56,7 +56,7 @@ export const ProjectsTable = ({ projects }: { projects: Project[] }) => {
                       aria-label={`${project.title} (opens in a new tab)`}
                     >
                       <span>
-                        {project.title}{" "}
+                        {project.title}{' '}
                         <span className="inline-block">
                           <UpArrowIcon className="inline-block h-4 w-4 shrink-0 transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 group-focus-visible/link:-translate-y-1 group-focus-visible/link:translate-x-1 motion-reduce:transition-none ml-1 translate-y-px" />
                         </span>
@@ -95,7 +95,7 @@ export const ProjectsTable = ({ projects }: { projects: Project[] }) => {
                       aria-label={`${new URL(project.url).hostname} (opens in a new tab)`}
                     >
                       <span>
-                        {" "}
+                        {' '}
                         <span className="inline-block">
                           {new URL(project.url).hostname}
                           <UpArrowIcon className="inline-block h-4 w-4 shrink-0 transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 group-focus-visible/link:-translate-y-1 group-focus-visible/link:translate-x-1 motion-reduce:transition-none ml-0.5" />

@@ -1,7 +1,7 @@
-import Link from "next/link";
-import { RightArrowIcon } from "@icons";
-import { projects } from "@data";
-import { ProjectsTable } from "@components";
+import Link from 'next/link';
+import { RightArrowIcon } from '@icons';
+import { projects } from '@data';
+import { ProjectsTable } from '@components';
 
 export default function Archive() {
   return (
@@ -14,7 +14,7 @@ export default function Archive() {
             href="/"
           >
             <span>
-              {" "}
+              {' '}
               <RightArrowIcon className="ml-1 inline-block h-4 w-4 shrink-0 -translate-y-px transition-transform group-hover:-translate-x-2 group-focus-visible:translate-x-2 motion-reduce:transition-none rotate-180" />
               <span className="border-b border-transparent pb-px transition group-hover:border-secondary motion-reduce:transition-none">
                 Yanal Almir

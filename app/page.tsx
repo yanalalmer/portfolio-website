@@ -1,4 +1,4 @@
-import { Header, Content } from "@components";
+import { Header, Content } from '@components';
 
 export default function Home() {
   return (

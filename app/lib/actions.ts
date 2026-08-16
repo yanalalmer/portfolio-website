@@ -1,6 +1,6 @@
-"use server";
+'use server';
 
-import nodemailer from "nodemailer";
+import nodemailer from 'nodemailer';
 
 export interface ContactFormData {
   name: string;
@@ -23,13 +23,13 @@ export async function sendContactEmail(
     if (!name || !email || !message) {
       return {
         success: false,
-        message: "All fields are required",
+        message: 'All fields are required',
       };
     }
 
     // Configure Nodemailer transporter for Titan email
     const transporter = nodemailer.createTransport({
-      host: "smtp.titan.email",
+      host: 'smtp.titan.email',
       port: 587,
       secure: false, // Use STARTTLS
       auth: {
@@ -37,7 +37,7 @@ export async function sendContactEmail(
         pass: process.env.TITAN_EMAIL_PASSWORD, // Your Titan email password or app password
       },
       tls: {
-        ciphers: "SSLv3",
+        ciphers: 'SSLv3',
         rejectUnauthorized: false,
       },
     });
@@ -46,10 +46,10 @@ export async function sendContactEmail(
     try {
       await transporter.verify();
     } catch (error) {
-      console.error("Email transporter verification failed:", error);
+      console.error('Email transporter verification failed:', error);
       return {
         success: false,
-        message: "Email service configuration error. Please try again later.",
+        message: 'Email service configuration error. Please try again later.',
       };
     }
 
@@ -75,7 +75,7 @@ export async function sendContactEmail(
             <h3 style="color: #333; margin-top: 0;">Message:</h3>
             <p style="line-height: 1.6; color: #555;">${message.replace(
               /\n/g,
-              "<br>"
+              '<br>'
             )}</p>
           </div>
           
@@ -108,13 +108,13 @@ Reply to ${email} to respond to ${name}.
     return {
       success: true,
       message:
-        "Thank you for reaching out! I will get back to you as soon as possible.",
+        'Thank you for reaching out! I will get back to you as soon as possible.',
     };
   } catch (error) {
-    console.error("Error sending email:", error);
+    console.error('Error sending email:', error);
     return {
       success: false,
-      message: "Failed to send email. Please try again later.",
+      message: 'Failed to send email. Please try again later.',
     };
   }
 }

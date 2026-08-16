@@ -1,5 +1,5 @@
-import { UpArrowIcon } from "@icons";
-import Link from "next/link";
+import { UpArrowIcon } from '@icons';
+import Link from 'next/link';
 
 export const Experience = () => {
   return (
@@ -37,7 +37,7 @@ export const Experience = () => {
                       >
                         <span className="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block"></span>
                         <span>
-                          {project.title} ·{" "}
+                          {project.title} ·{' '}
                           <span className="inline-block">
                             {project.company}
                             <UpArrowIcon className="inline-block h-4 w-4 shrink-0 transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 group-focus-visible/link:-translate-y-1 group-focus-visible/link:translate-x-1 motion-reduce:transition-none ml-1 translate-y-px" />
@@ -73,63 +73,57 @@ export const Experience = () => {
 
 const projects = [
   {
-    date: "Dec 2024 — Present",
-    title: "Senior Frontend Engineer",
-    company: "Creative Clicks",
-    companyUrl: "https://creativeclicks.com/",
+    date: 'Dec 2024 — Present',
+    title: 'Frontend Architect',
+    company: 'Creative Clicks',
+    companyUrl: 'https://creativeclicks.com/',
     description:
-      "As a full service digital marketing agency, I work on a wide range of projects, from small landing pages to large scale web applications. I'm responsible for the development of full scale applications from scratch to production.",
-    technologies: [
-      "TypeScript",
-      "Next.js",
-      "Tailwind",
-      "AWS",
-      "Anthropic Claude",
-    ],
+      'Architecting the monorepo behind an estate of international brand sites — package topology, shared contracts, and the build graph that keeps [N] surfaces shipping independently from one repository.',
+    technologies: ['TypeScript', 'Next.js', 'Turborepo', 'AWS', 'Headless CMS'],
   },
   {
-    date: "May 2023 — Dec 2024",
-    title: "Senior Frontend Developer",
-    company: "Mediahuis Nederland",
-    companyUrl: "https://www.mediahuis.nl/",
+    date: 'May 2023 — Dec 2024',
+    title: 'Senior Frontend Engineer',
+    company: 'Mediahuis Nederland',
+    companyUrl: 'https://www.mediahuis.nl/',
     description:
-      "Built and maintained the rebranded version of the popular video platform Dumpert.nl, including implementing new features and improving the performance of the platform.",
-    technologies: ["JavaScript", "TypeScript", "React", "GCP", "Next.js"],
+      'Led the frontend re-architecture of Dumpert.nl at roughly 1.2M daily actives, decomposing a legacy codebase into independently replaceable boundaries and sequencing the migration to avoid a cutover.',
+    technologies: ['JavaScript', 'TypeScript', 'React', 'GCP', 'Next.js'],
   },
   {
-    date: "Apr 2021 — May 2023",
-    title: "Frontend Developer",
-    company: "PressPage",
-    companyUrl: "https://www.presspage.com/",
+    date: 'Apr 2021 — May 2023',
+    title: 'Frontend Engineer',
+    company: 'PressPage',
+    companyUrl: 'https://www.presspage.com/',
     description:
-      "Worked on the development of a number of newsrooms for clients, including top notch international brands such as Smart, KPN and more.",
-    technologies: ["JavaScript", "React", "Vue", "SCSS"],
+      'Designed the multi-tenant newsroom platform behind KPN, Smart and other enterprise brands — shared codebase, brand differences isolated to configuration rather than forks.',
+    technologies: ['TypeScript', 'React', 'Vue', 'Multi-tenant'],
   },
   {
-    date: "Jan 2020 — Apr 2021",
-    title: "Frontend Developer",
-    company: "CarSys",
-    companyUrl: "https://www.carsys.online/",
+    date: 'Jan 2020 — Apr 2021',
+    title: 'Frontend Developer',
+    company: 'CarSys',
+    companyUrl: 'https://www.carsys.online/',
     description:
-      "Developed and maintained the CarSys garage management system, a comprehensive SaaS solution for managing car garages and inventory.",
-    technologies: ["JavaScript", "React", "Bootstrap", "jQuery"],
+      'Refactored a legacy SaaS platform toward maintainable module boundaries while feature work continued.',
+    technologies: ['TypeScript', 'React', 'Tailwind', 'AWS'],
   },
   {
-    date: "Aug 2019 — Aug 2020",
-    title: "Frontend Developer",
-    company: "Code Matrix Zone",
-    companyUrl: "https://codematrix.nl/",
+    date: 'Aug 2019 — Aug 2020',
+    title: 'Frontend Developer',
+    company: 'Code Matrix Zone',
+    companyUrl: 'https://codematrix.nl/',
     description:
-      "Worked on the development of a number of websites for clients, including e-commerce websites, landing pages and corporate websites.",
-    technologies: ["JavaScript", "React", "Bootstrap", "HTML", "CSS"],
+      'Worked on the development of a number of websites for clients, including e-commerce websites, landing pages and corporate websites.',
+    technologies: ['JavaScript', 'React', 'SCSS', 'Webpack'],
   },
   {
-    date: "Aug 2014 - Sep 2014",
-    title: "Frontend Developer",
-    company: "FP& McCann",
-    companyUrl: "https://mccann.com/",
+    date: 'Aug 2014 - Sep 2014',
+    title: 'Frontend Developer',
+    company: 'FP& McCann',
+    companyUrl: 'https://mccann.com/',
     description:
-      "Maintained a group of seven web applications for FP& McCann, including official group websites and mobile application.",
-    technologies: ["JavaScript", "React", "Bootstrap", "HTML", "CSS"],
+      'Maintained a group of seven web applications for FP& McCann, including official group websites and mobile application.',
+    technologies: ['JavaScript', 'React', 'React native', 'SCSS'],
   },
 ];

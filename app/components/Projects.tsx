@@ -1,7 +1,7 @@
-import { UpArrowIcon } from "@icons";
-import Link from "next/link";
-import Image from "next/image";
-import { projects } from "@data";
+import { UpArrowIcon } from '@icons';
+import Link from 'next/link';
+import Image from 'next/image';
+import { projects } from '@data';
 
 export const Projects = () => {
   return (
@@ -28,7 +28,7 @@ export const Projects = () => {
                       href={project.url}
                       target="_blank"
                       rel="noreferrer noopener"
-                      aria-label={project.title + " (opens in a new tab)"}
+                      aria-label={project.title + ' (opens in a new tab)'}
                     >
                       <span className="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block"></span>
                       <span>
@@ -42,9 +42,26 @@ export const Projects = () => {
                   <p className="mt-2 text-sm leading-normal">
                     {project.description}
                   </p>
+                  {'problem' in project && project.problem && (
+                    <p className="mt-2 text-sm leading-normal">
+                      <span className="font-bold">Problem:</span>{' '}
+                      {project.problem}
+                    </p>
+                  )}
+                  {'decision' in project && project.decision && (
+                    <p className="mt-2 text-sm leading-normal">
+                      <span className="font-bold">Decision:</span>{' '}
+                      {project.decision}
+                    </p>
+                  )}
+                  {'cost' in project && project.cost && (
+                    <p className="mt-2 text-sm leading-normal">
+                      <span className="font-bold">Cost:</span> {project.cost}
+                    </p>
+                  )}
                 </div>
                 <Image
-                  alt={project.title + " marketing card"}
+                  alt={project.title + ' marketing card'}
                   src={project.image}
                   className="z-20 rounded transition sm:order-1 sm:col-span-2 sm:translate-y-1"
                   width={280}
@@ -62,7 +79,7 @@ export const Projects = () => {
           >
             <span>
               <span className="border-b border-transparent pb-px transition group-hover:border-secondary motion-reduce:transition-none">
-                View Full Project{" "}
+                View Full Project{' '}
               </span>
               <span className="whitespace-nowrap">
                 <span className="border-b border-transparent pb-px transition group-hover:border-secondary motion-reduce:transition-none">

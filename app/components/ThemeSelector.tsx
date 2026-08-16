@@ -1,17 +1,16 @@
-"use client";
+'use client';
 
-import { useState, useEffect } from "react";
-import { ThemeSelectIcon, ClosingIcon } from "@icons";
-import { themes } from "@data";
-
+import { useState, useEffect } from 'react';
+import { ThemeSelectIcon, ClosingIcon } from '@icons';
+import { themes } from '@data';
 
 export const ThemeSelector = () => {
-  const [currentTheme, setCurrentTheme] = useState("classic");
+  const [currentTheme, setCurrentTheme] = useState('classic');
   const [isOpen, setIsOpen] = useState(false);
 
   // Load saved theme from localStorage on mount
   useEffect(() => {
-    const savedTheme = localStorage.getItem("portfolio-theme");
+    const savedTheme = localStorage.getItem('portfolio-theme');
     if (savedTheme && themes.find((theme) => theme.id === savedTheme)) {
       setCurrentTheme(savedTheme);
       document.documentElement.className =
@@ -32,20 +31,20 @@ export const ThemeSelector = () => {
       );
 
     // Save to localStorage
-    localStorage.setItem("portfolio-theme", currentTheme);
+    localStorage.setItem('portfolio-theme', currentTheme);
   }, [currentTheme]);
 
   // Close panel when pressing Escape
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
+      if (event.key === 'Escape') {
         setIsOpen(false);
       }
     };
 
-    document.addEventListener("keydown", handleEscape);
+    document.addEventListener('keydown', handleEscape);
     return () => {
-      document.removeEventListener("keydown", handleEscape);
+      document.removeEventListener('keydown', handleEscape);
     };
   }, []);
 
@@ -72,8 +71,9 @@ export const ThemeSelector = () => {
 
       {/* Sliding Panel */}
       <div
-        className={`fixed top-0 left-0 right-0 z-40 bg-bg border-b border-border transform transition-transform duration-300 ease-in-out ${isOpen ? "translate-y-0" : "-translate-y-full"
-          }`}
+        className={`fixed top-0 left-0 right-0 z-40 bg-bg border-b border-border transform transition-transform duration-300 ease-in-out ${
+          isOpen ? 'translate-y-0' : '-translate-y-full'
+        }`}
       >
         <div className="p-12">
           <div className="flex items-center justify-between mb-6">
@@ -91,10 +91,11 @@ export const ThemeSelector = () => {
               <button
                 key={theme.id}
                 onClick={() => handleThemeSelect(theme.id)}
-                className={`p-4 cursor-pointer rounded-lg border-2 transition-all duration-200 flex flex-col items-center justify-center ${currentTheme === theme.id
-                  ? "border-primary bg-primary/10 text-primary"
-                  : "border-border hover:border-primary/50 text-text hover:bg-bgOffset"
-                  }`}
+                className={`p-4 cursor-pointer rounded-lg border-2 transition-all duration-200 flex flex-col items-center justify-center ${
+                  currentTheme === theme.id
+                    ? 'border-primary bg-primary/10 text-primary'
+                    : 'border-border hover:border-primary/50 text-text hover:bg-bgOffset'
+                }`}
               >
                 <div className="font-bold mb-3 text-sm fp">{theme.name}</div>
                 <div className="flex gap-1">

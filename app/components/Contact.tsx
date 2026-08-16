@@ -1,4 +1,4 @@
-import { ContactForm } from "@components";
+import { ContactForm } from '@components';
 
 export const Contact = () => {
   return (
@@ -14,19 +14,21 @@ export const Contact = () => {
       </div>
       <div>
         <p>
-          I'm always looking for new opportunities to work on exciting projects.
-          If you have any questions or want to work together, feel free to reach
-          out to me.
+          I take on frontend architecture work — monorepo design, platform
+          consolidation, and untangling estates that have outgrown their
+          structure. Based in the Netherlands, working across the EU. If you're
+          running more than one frontend and it's starting to hurt, that's the
+          conversation I'm useful in.
         </p>
       </div>
       <div className="my-16">
         <h3 className="text-lg font-bold">
-          Email me:{" "}
+          Email me:{' '}
           <a
-            href="mailto:info@yanalalmir.com"
+            href="mailto:contact@yanalalmir.com"
             className="cursor-pointer hover:opacity-80 transition-all ease-in-out"
           >
-            info@yanalalmir.com
+            contact@yanalalmir.com
           </a>
         </h3>
       </div>

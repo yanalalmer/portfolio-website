@@ -1,4 +1,4 @@
-import { About, Experience, Projects, Contact } from "@components";
+import { About, Experience, Projects, Contact } from '@components';
 
 export const Content = () => {
   return (
