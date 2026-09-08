@@ -35,7 +35,7 @@ export const Header = () => {
           Yanal Almir
         </h1>
         <h2 className="mt-3 text-lg font-medium tracking-tight">
-          Frontend Architect
+          Frontend Engineer
         </h2>
         <p className="mt-4 max-w-lg leading-normal">
           I design the systems that other frontends are built on.

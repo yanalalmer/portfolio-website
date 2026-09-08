@@ -11,11 +11,11 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: {
     default:
-      'Yanal Almir | Frontend Architect — Monorepo & Platform Architecture',
+      'Yanal Almir | Frontend Engineer — Monorepo & Platform Architecture',
     template: '%s | Yanal Almir',
   },
   description:
-    'Frontend architect specialising in Turborepo monorepos. I design package topology, shared contracts and build graphs for organisations running multiple frontend surfaces. Netherlands-based, available for architecture and platform work.',
+    'Frontend engineer specialising in Turborepo monorepos. I design package topology, shared contracts and build graphs for organisations running multiple frontend surfaces. Netherlands-based, available for architecture and platform work.',
   authors: [{ name: 'Yanal Almir' }],
   creator: 'Yanal Almir',
   publisher: 'Yanal Almir',
@@ -33,25 +33,25 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://yanalalmir.com',
     title:
-      'Yanal Almir | Frontend Architect — Monorepo & Platform Architecture',
+      'Yanal Almir | Frontend Engineer — Monorepo & Platform Architecture',
     description:
-      'Frontend architect specialising in Turborepo monorepos. I design package topology, shared contracts and build graphs for organisations running multiple frontend surfaces. Netherlands-based, available for architecture and platform work.',
+      'Frontend engineer specialising in Turborepo monorepos. I design package topology, shared contracts and build graphs for organisations running multiple frontend surfaces. Netherlands-based, available for architecture and platform work.',
     siteName: 'Yanal Almir Portfolio',
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Yanal Almir — Frontend Architect',
+        alt: 'Yanal Almir — Frontend Engineer',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
     title:
-      'Yanal Almir | Frontend Architect — Monorepo & Platform Architecture',
+      'Yanal Almir | Frontend Engineer — Monorepo & Platform Architecture',
     description:
-      'Frontend architect specialising in Turborepo monorepos. I design package topology, shared contracts and build graphs for organisations running multiple frontend surfaces. Netherlands-based, available for architecture and platform work.',
+      'Frontend engineer specialising in Turborepo monorepos. I design package topology, shared contracts and build graphs for organisations running multiple frontend surfaces. Netherlands-based, available for architecture and platform work.',
     images: ['/og-image.jpg'],
     creator: '@yanalalmir',
   },

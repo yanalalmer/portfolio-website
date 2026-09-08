@@ -74,7 +74,7 @@ export const Experience = () => {
 const projects = [
   {
     date: 'Dec 2024 — Present',
-    title: 'Frontend Architect',
+    title: 'Senior Frontend Engineer',
     company: 'Creative Clicks',
     companyUrl: 'https://creativeclicks.com/',
     description:
@@ -83,7 +83,7 @@ const projects = [
   },
   {
     date: 'May 2023 — Dec 2024',
-    title: 'Senior Frontend Engineer',
+    title: 'Frontend Engineer',
     company: 'Mediahuis Nederland',
     companyUrl: 'https://www.mediahuis.nl/',
     description:
