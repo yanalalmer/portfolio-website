@@ -1,12 +1,14 @@
 'use client';
+
+import { useEffect, useRef, useState } from 'react';
+import { useForm as useFormspree, ValidationError } from '@formspree/react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import React from 'react';
-import {
-  sendContactEmail,
-  type ContactFormData as ServerContactFormData,
-} from '../lib/actions';
+import { Turnstile, type TurnstileInstance } from '@marsidev/react-turnstile';
+
+const FORMSPREE_FORM_ID = 'xvkowjbn';
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? '';
 
 const formSchema = z.object({
   name: z
@@ -23,120 +25,172 @@ const formSchema = z.object({
     .max(255, { message: 'Message must be less than 255 characters' }),
 });
 
+type ContactFormData = z.infer<typeof formSchema>;
+
+const inputClassName =
+  'w-full focus:bg-transparent active:bg-transparent border-b py-2 bg-transparent main-transition placeholder:text-darkGrey placeholder:opacity-50 focus:border-b-secondary focus:border-b active:border-b-secondary active:border-b outline-none';
+
 export const ContactForm = () => {
+  const turnstileRef = useRef<TurnstileInstance | null>(null);
+  const turnstileTokenRef = useRef('');
+  const [turnstileToken, setTurnstileToken] = useState('');
+
+  const updateTurnstileToken = (token: string) => {
+    turnstileTokenRef.current = token;
+    setTurnstileToken(token);
+  };
+
+  const [formspreeState, submitToFormspree, resetFormspree] = useFormspree(
+    FORMSPREE_FORM_ID,
+    {
+      data: {
+        'cf-turnstile-response': async () => {
+          if (!turnstileTokenRef.current) {
+            throw new Error('Turnstile is not ready');
+          }
+          return turnstileTokenRef.current;
+        },
+      },
+    }
+  );
+
   const {
     register,
     handleSubmit,
-    formState: { errors },
     reset,
-  } = useForm({
+    formState: { errors },
+  } = useForm<ContactFormData>({
     resolver: zodResolver(formSchema),
   });
 
-  const [successMessage, setSuccessMessage] = React.useState('');
-  const [errorMessage, setErrorMessage] = React.useState('');
-  const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const onSubmit = (data: ContactFormData) => submitToFormspree(data);
 
-  type ContactFormData = {
-    name: string;
-    email: string;
-    message: string;
-  };
-
-  const onSubmit = async (data: ContactFormData) => {
-    setIsSubmitting(true);
-    try {
-      const formData: ServerContactFormData = {
-        ...data,
-      };
-
-      const result = await sendContactEmail(formData);
-
-      if (result.success) {
-        setSuccessMessage(result.message);
-        setErrorMessage('');
-        reset();
-      } else {
-        console.error('Failed to send email:', result.message);
-        setSuccessMessage('');
-        setErrorMessage(result.message);
-      }
-    } catch (error) {
-      console.error('Error:', error);
-      setSuccessMessage('');
-      setErrorMessage('An unexpected error occurred. Please try again later.');
-    } finally {
-      setIsSubmitting(false);
+  useEffect(() => {
+    if (!formspreeState.succeeded) {
+      return;
     }
-  };
 
-  const handleInputChange = () => {
-    setSuccessMessage('');
-    setErrorMessage('');
-  };
+    const timeoutId = window.setTimeout(() => {
+      reset();
+      resetFormspree();
+      updateTurnstileToken('');
+      turnstileRef.current?.reset();
+    }, 4000);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [formspreeState.succeeded, reset, resetFormspree]);
+
+  if (!TURNSTILE_SITE_KEY) {
+    console.error(
+      'NEXT_PUBLIC_TURNSTILE_SITE_KEY is missing. Add the Turnstile site key to .env.local.'
+    );
+  }
+
+  if (formspreeState.succeeded) {
+    return (
+      <div className="w-full relative pt-16">
+        <p className="text-green-500 mb-16">
+          Thank you for reaching out! I will get back to you as soon as
+          possible.
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full relative pt-16">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-4">
           <input
+            id="name"
             type="text"
-            {...register('name')}
             placeholder="What is your name?"
-            className={`w-full focus:bg-transparent active:bg-transparent border-b py-2 bg-transparent main-transition placeholder:text-darkGrey placeholder:opacity-50 focus:border-b-secondary focus:border-b active:border-b-secondary active:border-b outline-none ${
+            autoComplete="name"
+            className={`${inputClassName} ${
               errors.name ? 'border-b-red' : 'border-b-darkGrey'
             }`}
-            onChange={handleInputChange}
+            {...register('name')}
           />
           <span className="text-red-500">
             {errors.name?.message || '\u00A0'}
           </span>
+          <ValidationError
+            prefix="Name"
+            field="name"
+            errors={formspreeState.errors}
+            className="text-red-500"
+          />
         </div>
         <div className="mb-4">
           <input
-            type="text"
-            {...register('email')}
+            id="email"
+            type="email"
             placeholder="What is your email?"
-            className={`w-full focus:bg-transparent active:bg-transparent border-b py-2 bg-transparent main-transition placeholder:text-darkGrey placeholder:opacity-50 focus:border-b-secondary focus:border-b active:border-b-secondary active:border-b outline-none appearance-none ${
+            autoComplete="email"
+            className={`${inputClassName} appearance-none ${
               errors.email ? 'border-b-red' : 'border-b-darkGrey'
             }`}
-            onChange={handleInputChange}
+            {...register('email')}
           />
           <span className="text-red-500 mb-4">
             {errors.email?.message || '\u00A0'}
           </span>
+          <ValidationError
+            prefix="Email"
+            field="email"
+            errors={formspreeState.errors}
+            className="text-red-500 mb-4"
+          />
         </div>
         <div className="mb-4">
           <textarea
-            {...register('message')}
+            id="message"
             placeholder="Type your message here"
             rows={4}
-            className={`resize-none w-full focus:bg-transparent active:bg-transparent border-b outline-none py-2 main-transition bg-transparent placeholder:text-darkGrey placeholder:opacity-50 focus:border-b-secondary focus:border-b active:border-b-secondary active:border-b ${
+            className={`resize-none ${inputClassName} ${
               errors.message ? 'border-b-red' : 'border-b-darkGrey'
             }`}
-            onChange={handleInputChange}
+            {...register('message')}
           />
           <span className="text-red-500 mb-4">
             {errors.message?.message || '\u00A0'}
           </span>
+          <ValidationError
+            prefix="Message"
+            field="message"
+            errors={formspreeState.errors}
+            className="text-red-500 mb-4"
+          />
         </div>
 
-        {errorMessage && (
-          <span className="text-red mb-4 block min-h-[1.5rem]">
-            {errorMessage}
-          </span>
-        )}
-        <span className="text-green-500 mb-4 block min-h-[1.5rem]">
-          {successMessage || '\u00A0'}
-        </span>
+        {TURNSTILE_SITE_KEY ? (
+          <div className="mb-6">
+            <Turnstile
+              ref={turnstileRef}
+              siteKey={TURNSTILE_SITE_KEY}
+              onSuccess={updateTurnstileToken}
+              onExpire={() => updateTurnstileToken('')}
+              onError={() => updateTurnstileToken('')}
+              options={{ theme: 'auto' }}
+            />
+          </div>
+        ) : null}
+
+        <ValidationError
+          errors={formspreeState.errors}
+          className="text-red mb-4 block min-h-[1.5rem]"
+        />
         <div>
           <button
+            type="submit"
             className={`mb-16 flex items-center rounded-full bg-secondary text-white px-4 py-2 text-xs font-bold leading-5 capitalize cursor-pointer hover:opacity-80 transition-all ease-in-out ${
-              isSubmitting ? 'opacity-40 cursor-not-allowed' : ''
+              formspreeState.submitting || !turnstileToken
+                ? 'opacity-40 cursor-not-allowed'
+                : ''
             }`}
-            disabled={isSubmitting}
+            disabled={formspreeState.submitting || !turnstileToken}
           >
-            {isSubmitting ? 'sending...' : 'send a message'}
+            {formspreeState.submitting ? 'sending...' : 'send a message'}
           </button>
         </div>
       </form>

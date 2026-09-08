@@ -82,13 +82,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${montserrat.variable} font-sans classic`}>
-      <head>
-        <script
-          src="https://challenges.cloudflare.com/turnstile/v0/api.js"
-          async
-          defer
-        />
-      </head>
       <body className="antialiased bg-bg text-text">
         <ThemeSelector />
         {children}
